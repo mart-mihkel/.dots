@@ -25,20 +25,6 @@
       - { name: user.email, value: "{{ email }}"}
       - { name: core.editor, value: "vi" }
 
-  - name: git config user.email
-    become_user: "{{ user }}"
-    community.general.git_config:
-      name: user.email
-      scope: global
-      value: "{{ email }}"
-
-  - name: git config core.editor
-    become_user: "{{ user }}"
-    community.general.git_config:
-      name: core.email
-      scope: global
-      value: "{{ email }}"
-
   - name: add docker gpg key
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
