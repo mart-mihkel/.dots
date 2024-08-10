@@ -1,0 +1,60 @@
+- hosts: localhost
+  become: true
+  tasks:
+
+  - name: include vars
+    include_vars:
+      file: ../vars.yml
+
+  - name: install dependencies
+    apt:
+      pkg:
+      - libconfig-dev
+      - libdbus-1-dev
+      - libegl-dev
+      - libev-dev
+      - libgl-dev
+      - libepoxy-dev
+      - libpcre2-dev
+      - libpixman-1-dev
+      - libx11-xcb-dev
+      - libxcb1-dev
+      - libxcb-composite0-dev
+      - libxcb-damage0-dev
+      - libxcb-glx0-dev
+      - libxcb-image0-dev
+      - libxcb-present-dev
+      - libxcb-randr0-dev
+      - libxcb-render0-dev
+      - libxcb-render-util0-dev
+      - libxcb-shape0-dev
+      - libxcb-util-dev
+      - libxcb-xfixes0-dev
+      - meson
+      - ninja-build
+      - uthash-dev
+
+  - stat: "path={{ home }}/dotfiles"
+    register: dotfiles
+
+  - name: clone dotfiles
+    when: not dotfiles.stat.exists
+    git:
+      accept_newhostkey: true
+      repo: git@github.com:mart-mihkel/dotfiles.git
+      dest: "{{ home }}/dotfiles"
+
+  - name: build picom
+    shell:
+      chdir: "{{ home }}/dotfiles/picom/picom"
+      cmd: "{{ item }}"
+    loop:
+    - meson setup --buildtype=release build
+    - ninja -C build install
+
+  - name: symlink config
+    file:
+      path: "{{ home }}/.config/picom"
+      src: "{{ home }}/dotfiles/picom"
+      state: link
+      force: yes

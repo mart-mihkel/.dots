@@ -4,29 +4,29 @@
 
   - name: include vars
     include_vars:
-      file: vars.yml
+      file: ../vars.yml
+
+  - stat: "path={{ home }}/.ghcup"
+    register: ghcup
+
+  - name: install haskell
+    when: not ghcup.stat.exists
+    become_user: "{{ user }}"
+    shell: curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    environment:
+      BOOTSTRAP_HASKELL_NONINTERACTIVE: true
 
   - name: install dependencies
     apt:
       pkg:
       - libxinerama-dev
       - libxrandr-dev
-      - haskell-stack
       - libxss-dev
       - libx11-dev
       - libxft-dev
       - xmobar
       - dmenu
-
-  - name: haskell setup
-    become_user: "{{ user }}"
-    shell:
-      cmd: "{{ item }}"
-      chdir: "{{ home }}/dotfiles/xmonad"
-    loop:
-    - { "stack upgrade" }
-    - { "stack setup" }
-    - { "stack install" }
+      - feh
 
   - stat: "path={{ home }}/dotfiles"
     register: dotfiles
@@ -37,6 +37,15 @@
       accept_newhostkey: true
       repo: git@github.com:mart-mihkel/dotfiles.git
       dest: "{{ home }}/dotfiles"
+
+  - name: build xmonad
+    become_user: "{{ user }}"
+    shell:
+      chdir: "{{ home }}/dotfiles/xmonad"
+      cmd: "{{ item }}"
+    loop:
+    - "{{ home }}/.ghcup/bin/stack upgrade"
+    - "{{ home }}/.ghcup/bin/stack install"
 
   - name: symlink config
     file:
