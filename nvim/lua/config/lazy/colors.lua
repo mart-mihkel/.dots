@@ -7,7 +7,10 @@ return {
 		local telescope_border = { bg = "#e2e8f0", fg = "#e2e8f0" }
 
 		require("github-theme").setup({
-			options = { hide_end_of_buffer = false },
+			options = {
+				hide_end_of_buffer = false,
+				transparent = true,
+			},
 			palettes = {
 				github_light_high_contrast = {
 					blue = black,
