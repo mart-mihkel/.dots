@@ -4,6 +4,3 @@
 [submodule "xmonad/xmonad-contrib"]
 	path = xmonad/xmonad-contrib
 	url = https://github.com/xmonad/xmonad-contrib
-[submodule "picom/picom"]
-	path = picom/picom
-	url = https://github.com/yshui/picom.git
