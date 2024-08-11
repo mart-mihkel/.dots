@@ -3,7 +3,6 @@ import XMonad
 import XMonad.Util.Themes
 import XMonad.Util.SpawnOnce
 
-import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 
 import XMonad.Hooks.DynamicLog
@@ -17,7 +16,7 @@ color0, color1 :: String
 color0 = "#8a999e"
 color1 = "#545d75"
 
-myLayout = smartSpacing 8 $ gaps [(U, 16), (D, 16), (L, 16), (R, 16)] $ avoidStruts $ tiled
+myLayout = smartSpacing 8 $ avoidStruts $ tiled
   where
     tiled = Tall 1 (1/2) (3/100)
 
@@ -37,7 +36,7 @@ myMobarPP = def
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawnOnce "feh --bg-fill --no-fehbg ~/dotfiles/walls/urr.jpeg"
+  spawnOnce "feh --bg-fill --no-fehbg ~/dotfiles/walls/a_person_riding_a_bicycle_on_a_hill_with_sunflowers.jpeg"
   spawnOnce "picom -b"
 
 main :: IO ()

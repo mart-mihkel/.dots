@@ -4,7 +4,8 @@ padding = { x = 8, y = 8 }
 opacity = 0.85
 
 [font]
-normal = { family = "Ubuntu Mono", style = "Regular"}
+normal = { family = "monospace", style = "Regular" }
+size = 10
 
 [colors]
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }

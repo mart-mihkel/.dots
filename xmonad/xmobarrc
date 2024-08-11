@@ -1,6 +1,6 @@
 -- vim:ft=haskell
 Config { overrideRedirect = False
-       , font = "Ubuntu Mono 11"
+       , font = "monospace"
        , bgColor = "#000000"
        , fgColor = "#8a999e"
        , alpha = 160
