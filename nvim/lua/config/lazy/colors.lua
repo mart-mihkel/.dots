@@ -4,7 +4,7 @@ return {
 	priority = 1024,
 	config = function()
 		local black = { base = "#000000", bright = "#1f2328" }
-		local telescope_border = { bg = "#e2e8f0", fg = "#e2e8f0" }
+		local telescope_border = { bg = "#ffffff", fg = "#ffffff" }
 
 		require("github-theme").setup({
 			options = {
