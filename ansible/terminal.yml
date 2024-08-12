@@ -1,0 +1,24 @@
+- hosts: localhost
+  become: true
+  tasks:
+
+  - name: include vars
+    include_vars:
+      file: vars.yml
+
+  - name: install alacritty
+    pacman:
+      name: alacritty
+
+  - name: symlink config
+    file:
+      path: "{{ config }}/alacritty"
+      src: "{{ home }}/dotfiles/alacritty"
+      state: link
+
+  - name: symlink configs
+    file:
+      path: "{{ config }}/alacritty"
+      src: "{{ home }}/dotfiles/alacritty"
+      state: link
+      force: true

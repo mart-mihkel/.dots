@@ -7,12 +7,24 @@
       file: vars.yml
 
   - name: install software
-    apt:
-      pkg:
-      - ca-certificates
-      - python3-pip
+    pacman:
+      name:
+      - networkmanager
+      - bluez-utils
+      - bluez
+      - pulseaudio
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
+      - pamixer
+      - docker-compose
+      - docker-buildx
+      - docker
+      - containerd
       - curl
+      - sudo
+      - man
       - git
+      - vim
 
   - name: git config
     become_user: "{{ user }}"
@@ -21,34 +33,37 @@
       value: "{{ item.value }}"
       scope: global
     loop:
-      - { name: user.name, value: "{{ username }}"}
-      - { name: user.email, value: "{{ email }}"}
-      - { name: core.editor, value: "vi" }
+      - { name: user.name, value: mart-mihkel }
+      - { name: user.email, value: mart.mihkel.aun@gmail.com }
+      - { name: core.editor, value: vim }
 
-  - name: add docker gpg key
-    apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-
-  - name: add docker repository
-    apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu focal stable
-
-  - name: install docker
-    apt:
-      pkg:
-      - docker-ce-cli
-      - docker-buildx-plugin
-      - docker-compose-plugin
-      - containerd.io
-
-  - name: ensure group docker exists with correct gid
-    ansible.builtin.group:
+  - name: create docker group
+    group:
       name: docker
       state: present
 
   - name: add user to docker group
-    ansible.builtin.user:
+    user:
       name: "{{ user }}"
       groups: docker
       append: true
 
+  - name: enable services
+    systemd_service:
+      enabled: true
+      state: started
+      name: "{{ item }}"
+    loop:
+      - NetworkManager
+      - bluetooth
+      - docker
+
+  - name: symlink bash config
+    file:
+      path: "{{ item.path }}"
+      src: "{{ item.src }}"
+      state: link
+      force: yes
+    loop:
+      - { path: "{{ home }}/.bashrc", src: "{{ home }}/dotfiles/.bashrc"}
+      - { path: "{{ home }}/.bash_profile", src: "{{ home }}/dotfiles/.bash_profile"}

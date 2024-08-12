@@ -1,0 +1,44 @@
+- hosts: localhost
+  become: true
+  tasks:
+
+  - name: include vars
+    include_vars:
+      file: vars.yml
+
+  - name: install dependencies
+    pacman:
+      name:
+      - xorg-server
+      - xorg-apps
+      - xorg-xinit
+      - xorg-xmessage
+      - libx11
+      - libxft
+      - libxinerama
+      - libxrandr
+      - libxss
+      - pkgconf
+
+  - name: install additional pacages
+    pacman:
+      name:
+      - picom
+      - feh
+
+  - name: build xmonad
+    become_user: "{{ user }}"
+    shell:
+      chdir: "{{ home }}/dotfiles/xmonad"
+      cmd: "{{ home }}/.ghcup/bin/stack install"
+
+  - name: symlink configs
+    file:
+      path: "{{ item.path }}"
+      src: "{{ item.src }}"
+      state: link
+      force: yes
+    loop:
+      - { path: "{{ config }}/xmonad", src: "{{ home }}/dotfiles/xmonad"}
+      - { path: "{{ config }}/picom", src: "{{ home }}/dotfiles/picom"}
+      - { path: "{{ home }}/.xinitrc", src: "{{ home }}/dotfiles/.xinitrc"}

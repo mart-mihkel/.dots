@@ -1,4 +1,3 @@
 user: "maun"
-username: "mart-mihkel"
-email: "mart.mihkel.aun@gmail.com"
 home: "/home/{{ user }}"
+config: "{{ home }}/.config"

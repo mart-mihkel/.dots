@@ -7,10 +7,11 @@
       file: vars.yml
 
   - name: install apt packages
-    apt:
-      pkg:
+    pacman:
+      name:
       - ripgrep
       - cmake
+      - make
       - gcc
 
   - stat: "path={{ home }}/.rustup"
@@ -29,3 +30,14 @@
     become_user: "{{ user }}"
     shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
+
+  - stat: "path={{ home }}/.ghcup"
+    register: ghcup
+
+  - name: install haskell
+    when: not ghcup.stat.exists
+    become_user: "{{ user }}"
+    shell: curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    environment:
+      BOOTSTRAP_HASKELL_NONINTERACTIVE: true
+      BOOTSTRAP_HASKELL_ADJUST_BASHRC: true
