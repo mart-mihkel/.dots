@@ -1,0 +1,80 @@
+(defpoll WORKSPACES :interval "0.1s"
+  "scripts/workspaces.sh")
+
+(defpoll VOLUME :interval "1s"
+  "pamixer --get-volume")
+
+(defpoll NETWORK :interval "1s"
+  "scripts/net.sh")
+
+(defpoll BLUETOOTH :interval "1s"
+  "scripts/bluetooth.sh	")
+
+(defpoll TIME :interval "10s"
+  "date '+%H:%M %b %d. %Y'")
+
+
+
+(defwidget bar []
+  (box :orientation "h"
+    (workspaces)
+    (metrics)))
+
+(defwidget workspaces []
+  (box :class "ws"
+       :orientation "h"
+       :halign "start"
+    (literal :content WORKSPACES)))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget metrics []
+  (box :orientation "h" :space-evenly false :halign "end"
+    (connection-metrics)
+    (system-metrics)
+    TIME))
+
+(defwidget connection-metrics []
+  (box :class "con-metrics"
+    :spacing 8
+    BLUETOOTH
+    NETWORK))
+
+(defwidget system-metrics []
+  (box :class "sys-metrics"
+    :spacing 8
+    (metric :label " "
+            :value VOLUME
+            :onchange "amixer -D pulse sset Master {}%")
+    (metric :label "󰁹"
+	    :value {EWW_BATTERY.BAT0.capacity}
+	    :onchange "")
+    (metric :label " "
+	    :value {EWW_CPU.avg}
+	    :onchange "")
+    (metric :label " "
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")))
+
+
+
+(defwindow bar
+  :monitor 0
+  :stacking "fg"
+  :wm-ignore false
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "30px"
+                      :anchor "top center")
+  (bar))
