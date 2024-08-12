@@ -1,0 +1,10 @@
+* {
+    bg: #fcfcfc;
+    fg: #5c6166;
+
+    black: #010101;
+    white: #c1c1c1;
+
+    bright-black: #343434;
+    bright-white: #dbdbdb;
+}

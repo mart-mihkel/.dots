@@ -1,0 +1,24 @@
+@theme "theme"
+
+configuration {
+    display-drun: " ";
+}
+
+* {
+    background-color: @bg;
+
+    margin: 0;
+    padding: 1px;
+    spacing: 0;
+}
+
+window {
+    transparency: "real";
+
+    width: 15%;
+    height: 40%;
+}
+
+element-text {
+    highlight: bold;
+}
