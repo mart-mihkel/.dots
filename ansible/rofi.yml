@@ -11,6 +11,7 @@
       name:
       - rofi
       - rofimoji
+      - xdotool
 
   - name: symlink configs
     file:
