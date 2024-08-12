@@ -5,7 +5,7 @@ opacity = 0.85
 
 [font]
 normal = { family = "monospace", style = "Regular" }
-size = 10
+size = 8
 
 [colors]
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }
