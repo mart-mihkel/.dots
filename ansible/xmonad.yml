@@ -30,7 +30,9 @@
     become_user: "{{ user }}"
     shell:
       chdir: "{{ home }}/dotfiles/xmonad"
-      cmd: "{{ home }}/.ghcup/bin/stack install"
+      cmd: stack install
+    environment:
+        PATH: "{{ home }}/.ghcup/bin:{{ ansible_env.PATH }}"
 
   - name: symlink configs
     file:
@@ -41,4 +43,5 @@
     loop:
       - { path: "{{ config }}/xmonad", src: "{{ home }}/dotfiles/xmonad"}
       - { path: "{{ config }}/picom", src: "{{ home }}/dotfiles/picom"}
+      - { path: "{{ home }}/.fehbg", src: "{{ home }}/dotfiles/.fehbg"}
       - { path: "{{ home }}/.xinitrc", src: "{{ home }}/dotfiles/.xinitrc"}

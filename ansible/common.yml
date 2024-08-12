@@ -9,6 +9,7 @@
   - name: install apt packages
     pacman:
       name:
+      - noto-fonts-emoji
       - ripgrep
       - cmake
       - make
@@ -41,3 +42,10 @@
     environment:
       BOOTSTRAP_HASKELL_NONINTERACTIVE: true
       BOOTSTRAP_HASKELL_ADJUST_BASHRC: true
+
+  - name: install ubuntu mono nerd font
+    shell: "{{ item }}"
+    loop:
+      - "mkdir -p {{ home }}/.local/share/fonts"
+      - "cp {{ home }}/dotfiles/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
+      - "fc-cache -f -v"

@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill '/home/maun/dotfiles/walls/a_ship_in_the_ocean.png' 

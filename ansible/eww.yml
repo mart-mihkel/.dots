@@ -32,10 +32,3 @@
       path: "{{ config }}/eww"
       src: "{{ home }}/dotfiles/eww"
       state: link
-
-  - name: install ubuntu mono nerd font
-    shell: "{{ item }}"
-    loop:
-      - "mkdir -p {{ home }}/.local/share/fonts"
-      - "cp {{ home }}/dotfiles/font/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
-      - "fc-cahce -f -v"
