@@ -6,10 +6,11 @@
     include_vars:
       file: vars.yml
 
-  - name: install apt packages
+  - name: install packages
     pacman:
       name:
       - noto-fonts-emoji
+      - firefox
       - ripgrep
       - cmake
       - make
@@ -44,6 +45,7 @@
       BOOTSTRAP_HASKELL_ADJUST_BASHRC: true
 
   - name: install ubuntu mono nerd font
+    become_user: "{{ user }}"
     shell: "{{ item }}"
     loop:
       - "mkdir -p {{ home }}/.local/share/fonts"

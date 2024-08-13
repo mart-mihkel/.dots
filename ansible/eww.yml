@@ -17,6 +17,8 @@
       - glib2
       - gcc-libs
       - glibc
+      - pkgconfig
+      - wmctrl
 
   - name: build eww
     become_user: "{{ user }}"

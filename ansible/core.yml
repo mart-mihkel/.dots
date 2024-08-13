@@ -16,10 +16,14 @@
       - pulseaudio-alsa
       - pulseaudio-bluetooth
       - pamixer
+      - openssl
+      - openssh
       - docker-compose
       - docker-buildx
       - docker
       - containerd
+      - fontconfig
+      - bash-completion
       - curl
       - sudo
       - man
@@ -57,6 +61,15 @@
       - NetworkManager
       - bluetooth
       - docker
+
+  - name: create dirs
+    become_user: "{{ user }}"
+    file:
+      path: "{{ config }}"
+      state: directory
+    loop:
+      - "{{ config }}"
+      - "{{ home }}/.local/bin"
 
   - name: symlink bash config
     file:
