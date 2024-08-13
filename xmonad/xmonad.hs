@@ -28,8 +28,8 @@ manager = composeAll
 
 startup :: X ()
 startup = do
-  spawnOnce "feh --bg-fill --no-fehbg ~/dotfiles/walls/a_cartoon_of_a_castle.png"
   spawnOnce "eww open bar"
+  spawnOnce "~/.fehbg"
   spawnOnce "picom -b"
 
 main :: IO ()

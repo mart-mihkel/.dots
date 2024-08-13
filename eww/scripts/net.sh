@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$(nmcli g | grep connected |awk '{ print $1 }')" == "connected" ]; then
+if [ "$(nmcli | rg ^wlp.*connected | awk '{ print $2 }')" == "connected" ]; then
 	echo "󰤨 "
 else
 	echo "󰤯 "
