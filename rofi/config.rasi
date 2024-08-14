@@ -1,24 +1,6 @@
-@theme "theme"
-
 configuration {
-    display-drun: " ";
+    show-icons:                     false;
 }
 
-* {
-    background-color: @bg;
+@theme "custom"
 
-    margin: 0;
-    padding: 1px;
-    spacing: 0;
-}
-
-window {
-    transparency: "real";
-
-    width: 15%;
-    height: 40%;
-}
-
-element-text {
-    highlight: bold;
-}
