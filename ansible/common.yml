@@ -10,6 +10,7 @@
     pacman:
       name:
       - noto-fonts-emoji
+      - noto-fonts-cjk
       - firefox
       - ripgrep
       - cmake
@@ -32,6 +33,9 @@
     become_user: "{{ user }}"
     shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
+  - name: install node
+    become_user: "{{ user }}"
+    shell: "nvm install 22"
 
   - stat: "path={{ home }}/.ghcup"
     register: ghcup

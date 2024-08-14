@@ -3,19 +3,19 @@ import XMonad
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
 
-import XMonad.Layout.Gaps
 import XMonad.Layout.Spiral
 import XMonad.Layout.Spacing
 
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 
+layout = avoidStruts $ smartSpacing 8 $ spiral (6/7)
 
-layout = avoidStruts $ gaps [(U, 31)] $ smartSpacing 8 $ spiral (6/7)
-
+keybinds :: [(String, X())]
 keybinds =
   [ ("M-p", spawn "rofi -show drun")
   , ("M-.", spawn "rofimoji")
+  , ("M-i", spawn "~/dotfiles/rofi/scripts/info.sh | rofi -dmenu")
   , ("M-f", spawn "firefox")
   ]
 
@@ -28,7 +28,6 @@ manager = composeAll
 
 startup :: X ()
 startup = do
-  spawnOnce "eww open bar"
   spawnOnce "~/.fehbg"
   spawnOnce "picom -b"
 
@@ -38,7 +37,6 @@ main = xmonad . docks . ewmhFullscreen . ewmh $ defaults `additionalKeysP` keybi
 defaults = def
   { modMask            = mod4Mask
   , terminal           = "alacritty"
-  , workspaces         = ["dev", "www", "sys", "misc"]
   , focusFollowsMouse  = True
   , clickJustFocuses   = False
   , borderWidth        = 0
