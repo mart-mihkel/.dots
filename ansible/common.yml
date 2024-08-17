@@ -20,39 +20,37 @@
       - make
       - gcc
 
-  - stat: "path={{ home }}/.rustup"
-    register: rustup
-
   - name: install rust
-    when: not rustup.stat.exists
     become_user: "{{ user }}"
-    shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-  - stat: "path={{ home }}/.nvm"
-    register: nvm
+    shell:
+      cmd: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      creates: "{{ home }}/.rustup"
 
   - name: install node version manager
-    when: not nvm.stat.exists
     become_user: "{{ user }}"
-    shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+    shell:
+      cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+      creates: "{{ home }}/.nvm"
 
   - name: install node
-    shell: "source {{ home }}/.nvm/nvm.sh && nvm install 22"
-
-  - stat: "path={{ home }}/.ghcup"
-    register: ghcup
+    shell:
+      cmd: "source {{ home }}/.nvm/nvm.sh && nvm install 22"
+      creates: "{{ home }}/.nvm/alias"
 
   - name: install haskell
-    when: not ghcup.stat.exists
     become_user: "{{ user }}"
-    shell: curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+    shell:
+      cmd: curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+      creates: "{{ home }}/.ghcup"
     environment:
       BOOTSTRAP_HASKELL_NONINTERACTIVE: true
       BOOTSTRAP_HASKELL_ADJUST_BASHRC: true
 
   - name: install ubuntu mono nerd font
     become_user: "{{ user }}"
-    shell: "{{ item }}"
+    shell:
+      cmd: "{{ item }}"
+      creates: "{{ home }}/.local/share/fonts"
     loop:
       - "mkdir -p {{ home }}/.local/share/fonts"
       - "cp {{ home }}/dotfiles/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
