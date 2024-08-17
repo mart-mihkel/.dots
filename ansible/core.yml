@@ -22,7 +22,6 @@
       - docker-buildx
       - docker
       - containerd
-      - fontconfig
       - bash-completion
       - curl
       - sudo
@@ -40,6 +39,7 @@
       - { name: user.name, value: mart-mihkel }
       - { name: user.email, value: mart.mihkel.aun@gmail.com }
       - { name: core.editor, value: vim }
+      - { name: init.defaultBranch, value: master }
 
   - name: create docker group
     group:

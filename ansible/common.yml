@@ -11,8 +11,11 @@
       name:
       - noto-fonts-emoji
       - noto-fonts-cjk
+      - fontconfig
+      - alacritty
       - firefox
       - ripgrep
+      - neovim
       - cmake
       - make
       - gcc
@@ -34,8 +37,7 @@
     shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
   - name: install node
-    become_user: "{{ user }}"
-    shell: "nvm install 22"
+    shell: "source {{ home }}/.nvm/nvm.sh && nvm install 22"
 
   - stat: "path={{ home }}/.ghcup"
     register: ghcup
@@ -55,3 +57,13 @@
       - "mkdir -p {{ home }}/.local/share/fonts"
       - "cp {{ home }}/dotfiles/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
       - "fc-cache -f -v"
+
+  - name: symlink configs
+    file:
+      path: "{{ item.path }}"
+      src: "{{ item.src }}"
+      state: link
+      force: yes
+    loop:
+      - { path: "{{ config }}/nvim", src: "{{ home }}/dotfiles/nvim" }
+      - { path: "{{ config }}/alacritty", src: "{{ home }}/dotfiles/alacritty" }

@@ -25,6 +25,9 @@
       name:
       - picom
       - feh
+      - rofi
+      - rofimoji
+      - xdotool
 
   - name: build xmonad
     become_user: "{{ user }}"
@@ -41,7 +44,8 @@
       state: link
       force: yes
     loop:
-      - { path: "{{ config }}/xmonad", src: "{{ home }}/dotfiles/xmonad"}
-      - { path: "{{ config }}/picom", src: "{{ home }}/dotfiles/picom"}
-      - { path: "{{ home }}/.fehbg", src: "{{ home }}/dotfiles/.fehbg"}
-      - { path: "{{ home }}/.xinitrc", src: "{{ home }}/dotfiles/.xinitrc"}
+      - { path: "{{ config }}/xmonad", src: "{{ home }}/dotfiles/xmonad" }
+      - { path: "{{ config }}/picom", src: "{{ home }}/dotfiles/picom" }
+      - { path: "{{ config }}/rofi", src: "{{ home }}/dotfiles/rofi" }
+      - { path: "{{ home }}/.fehbg", src: "{{ home }}/dotfiles/.fehbg" }
+      - { path: "{{ home }}/.xinitrc", src: "{{ home }}/dotfiles/.xinitrc" }
