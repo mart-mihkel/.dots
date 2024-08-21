@@ -13,7 +13,7 @@
 window {
     width:                          15%;
     height:                         40%;
-    background-color:               #fcfcfc4c;
+    background-color:               #fcfcfca6;
 }
 
 mainbox {
@@ -46,10 +46,5 @@ element-text {
 }
 
 element selected.normal {
-    background-color:               #fcfcfc4c;
+    background-color:               #dbdbdb;
 }
-
-element alternate.normal {
-    background-color:               #fcfcfc32;
-}
-
