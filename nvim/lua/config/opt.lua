@@ -5,6 +5,7 @@ vim.g.netrw_banner = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.guicursor = "n-v-c-i:block-nCursor,i-ci:block-nCursor-blinkwait1-blinkon75-blinkoff75"
 
 vim.opt.mouse = "a"
 vim.opt.inccommand = "split"

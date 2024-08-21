@@ -12,6 +12,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	desc = "Explore on open",
 	callback = function()
 		if vim.tbl_count(vim.v.argv) == 2 then
 			vim.cmd("Explore")
