@@ -48,9 +48,7 @@
 
   - name: install ubuntu mono nerd font
     become_user: "{{ user }}"
-    shell:
-      cmd: "{{ item }}"
-      creates: "{{ home }}/.local/share/fonts"
+    shell: "{{ item }}"
     loop:
       - "mkdir -p {{ home }}/.local/share/fonts"
       - "cp {{ home }}/dotfiles/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"

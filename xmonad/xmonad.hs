@@ -13,9 +13,10 @@ layout = avoidStruts $ smartSpacing 8 $ spiral (6/7)
 
 keybinds :: [(String, X())]
 keybinds =
-  [ ("M-p", spawn "rofi -show drun")
+  [ ("M-w", spawn "rofi -show wallpaper -modes wallpaper:~/.config/rofi/scripts/wallpaper.sh")
+  , ("M-i", spawn "rofi -show info -modes info:~/.config/rofi/scripts/info.sh")
+  , ("M-p", spawn "rofi -show drun")
   , ("M-.", spawn "rofimoji")
-  , ("M-i", spawn "~/dotfiles/rofi/scripts/info.sh | rofi -dmenu")
   , ("M-f", spawn "firefox")
   ]
 
