@@ -37,15 +37,6 @@
       cmd: "source {{ home }}/.nvm/nvm.sh && nvm install 22"
       creates: "{{ home }}/.nvm/alias"
 
-  - name: install haskell
-    become_user: "{{ user }}"
-    shell:
-      cmd: curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-      creates: "{{ home }}/.ghcup"
-    environment:
-      BOOTSTRAP_HASKELL_NONINTERACTIVE: true
-      BOOTSTRAP_HASKELL_ADJUST_BASHRC: true
-
   - name: install ubuntu mono nerd font
     become_user: "{{ user }}"
     shell: "{{ item }}"

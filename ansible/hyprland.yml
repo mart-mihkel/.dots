@@ -9,16 +9,7 @@
   - name: install dependencies
     pacman:
       name:
-      - xorg-server
-      - xorg-apps
-      - xorg-xinit
-      - xorg-xmessage
-      - libx11
-      - libxft
-      - libxinerama
-      - libxrandr
-      - libxss
-      - pkgconf
+      - hyprland
 
   - name: install additional pacages
     pacman:
@@ -29,13 +20,6 @@
       - rofimoji
       - xdotool
 
-  - name: build xmonad
-    become_user: "{{ user }}"
-    shell:
-      chdir: "{{ dotfiles }}/xmonad"
-      cmd: stack install
-    environment:
-        PATH: "{{ home }}/.ghcup/bin:{{ ansible_env.PATH }}"
 
   - name: symlink configs
     file:
