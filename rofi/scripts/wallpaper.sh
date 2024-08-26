@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wall="$HOME/dotfiles/walls/$1"
+wall="$HOME/git/dotfiles/walls/$1"
 if [[ -f $wall ]]; then
 	feh --bg-fill $wall
 	exit 0

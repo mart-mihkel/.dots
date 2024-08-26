@@ -32,7 +32,7 @@
   - name: build xmonad
     become_user: "{{ user }}"
     shell:
-      chdir: "{{ home }}/dotfiles/xmonad"
+      chdir: "{{ dotfiles }}/xmonad"
       cmd: stack install
     environment:
         PATH: "{{ home }}/.ghcup/bin:{{ ansible_env.PATH }}"
@@ -44,8 +44,8 @@
       state: link
       force: yes
     loop:
-      - { path: "{{ config }}/xmonad", src: "{{ home }}/dotfiles/xmonad" }
-      - { path: "{{ config }}/picom", src: "{{ home }}/dotfiles/picom" }
-      - { path: "{{ config }}/rofi", src: "{{ home }}/dotfiles/rofi" }
-      - { path: "{{ home }}/.fehbg", src: "{{ home }}/dotfiles/.fehbg" }
-      - { path: "{{ home }}/.xinitrc", src: "{{ home }}/dotfiles/.xinitrc" }
+      - { path: "{{ config }}/xmonad", src: "{{ dotfiles }}/xmonad" }
+      - { path: "{{ config }}/picom", src: "{{ dotfiles }}/picom" }
+      - { path: "{{ config }}/rofi", src: "{{ dotfiles }}/rofi" }
+      - { path: "{{ home }}/.fehbg", src: "{{ dotfiles }}/.fehbg" }
+      - { path: "{{ home }}/.xinitrc", src: "{{ dotfiles }}/.xinitrc" }

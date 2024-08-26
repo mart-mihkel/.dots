@@ -51,7 +51,7 @@
     shell: "{{ item }}"
     loop:
       - "mkdir -p {{ home }}/.local/share/fonts"
-      - "cp {{ home }}/dotfiles/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
+      - "cp {{ dotfiles }}/fonts/UbuntuMonoNerdFont-Regular.ttf {{ home }}/.local/share/fonts/UbuntuMonoNerdFont-Regular.ttf"
       - "fc-cache -f -v"
 
   - name: symlink configs
@@ -61,5 +61,5 @@
       state: link
       force: yes
     loop:
-      - { path: "{{ config }}/nvim", src: "{{ home }}/dotfiles/nvim" }
-      - { path: "{{ config }}/alacritty", src: "{{ home }}/dotfiles/alacritty" }
+      - { path: "{{ config }}/nvim", src: "{{ dotfiles }}/nvim" }
+      - { path: "{{ config }}/alacritty", src: "{{ dotfiles }}/alacritty" }

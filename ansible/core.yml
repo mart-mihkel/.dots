@@ -65,7 +65,7 @@
   - name: create dirs
     become_user: "{{ user }}"
     file:
-      path: "{{ config }}"
+      path: "{{ item }}"
       state: directory
     loop:
       - "{{ config }}"
@@ -78,5 +78,5 @@
       state: link
       force: yes
     loop:
-      - { path: "{{ home }}/.bashrc", src: "{{ home }}/dotfiles/.bashrc"}
-      - { path: "{{ home }}/.bash_profile", src: "{{ home }}/dotfiles/.bash_profile"}
+      - { path: "{{ home }}/.bashrc", src: "{{ dotfiles }}/.bashrc"}
+      - { path: "{{ home }}/.bash_profile", src: "{{ dotfiles }}/.bash_profile"}
