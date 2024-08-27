@@ -16,6 +16,8 @@
       - firefox
       - ripgrep
       - neovim
+      - meson
+      - ninja
       - cmake
       - make
       - gcc
