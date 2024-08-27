@@ -12,6 +12,7 @@
       - networkmanager
       - bluez-utils
       - bluez
+      - brightnessctl
       - pulseaudio
       - pulseaudio-alsa
       - pulseaudio-bluetooth
