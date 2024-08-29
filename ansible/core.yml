@@ -6,7 +6,7 @@
     include_vars:
       file: vars.yml
 
-  - name: install software
+  - name: pacman sync
     pacman:
       name:
       - networkmanager
@@ -30,7 +30,7 @@
       - git
       - vim
 
-  - name: git config
+  - name: git global settings
     become_user: "{{ user }}"
     community.general.git_config:
       name: "{{ item.name }}"
@@ -63,16 +63,13 @@
       - bluetooth
       - docker
 
-  - name: create dirs
+  - name: create config dir
     become_user: "{{ user }}"
     file:
-      path: "{{ item }}"
+      path: "{{ config }}"
       state: directory
-    loop:
-      - "{{ config }}"
-      - "{{ home }}/.local/bin"
 
-  - name: symlink bash config
+  - name: symlink configs
     file:
       path: "{{ item.path }}"
       src: "{{ item.src }}"

@@ -6,7 +6,7 @@
     include_vars:
       file: vars.yml
 
-  - name: install pacages
+  - name: pacman sync
     pacman:
       name:
       - hyprland

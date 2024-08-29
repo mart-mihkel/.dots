@@ -73,7 +73,8 @@ fi
 
 bat="/sys/class/power_supply/BAT0/capacity"
 if [[ -f "$bat" ]]; then
-	echo "󰁹  $bat"
+	capacity="$(cat $bat)"
+	echo "󰁹  $capacity%"
 fi
 
 echo -e "  $(pamixer --get-volume-human)\0info\x1faudio"
