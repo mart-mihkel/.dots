@@ -77,4 +77,3 @@
       force: yes
     loop:
       - { path: "{{ home }}/.bashrc", src: "{{ dotfiles }}/.bashrc"}
-      - { path: "{{ home }}/.bash_profile", src: "{{ dotfiles }}/.bash_profile"}
