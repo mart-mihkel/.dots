@@ -4,16 +4,17 @@
     padding:                        0;
     margin:                         0;
     spacing:                        0;
-    border:                         0;
+    border:                         1;
 
-    text-color:                     #010101;
+    text-color:                     #000000;
     background-color:               transparent;
 }
 
 window {
     width:                          15%;
-    height:                         40%;
-    background-color:               #fcfcfca6;
+    height:                         25%;
+    background-color:               #ffffff;
+    border-color:		    #010101;
 }
 
 mainbox {
@@ -21,12 +22,11 @@ mainbox {
 }
 
 inputbar {
-    padding:			    0.5em;
+    padding:			    0.15em;
     children:                       ["entry"];
 }
 
 listview {
-    padding:			    0.5em;
     cycle:                          true;
     dynamic:                        true;
     scrollbar:                      false;
@@ -34,7 +34,6 @@ listview {
 }
 
 element {
-    text-color:                     #343434;
     cursor:                         pointer;
     padding:                        0.15em;
 }

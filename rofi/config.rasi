@@ -2,4 +2,4 @@ configuration {
     show-icons:                     false;
 }
 
-@theme "theme.rasi"
+@theme "custom.rasi"

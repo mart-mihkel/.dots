@@ -8,7 +8,6 @@ return {
 		require("github-theme").setup({
 			options = {
 				hide_end_of_buffer = false,
-				transparent = true,
 			},
 			palettes = {
 				github_light_high_contrast = {
