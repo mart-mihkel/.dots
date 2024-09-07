@@ -9,11 +9,15 @@
   - name: pacman sync
     pacman:
       name:
+      - polkit-kde-agent
       - hyprland
       - hypridle
       - hyprlock
       - hyprpaper
-      - rofi-wayland
+      - cliphist
+      - swaync
+      - waybar
+      - wofi
 
   - name: symlink configs
     file:
@@ -22,5 +26,6 @@
       state: link
       force: yes
     loop:
+      - { path: "{{ config }}/waybar", src: "{{ dotfiles }}/waybar" }
+      - { path: "{{ config }}/wofi", src: "{{ dotfiles }}/wofi" }
       - { path: "{{ config }}/hypr", src: "{{ dotfiles }}/hypr" }
-      - { path: "{{ config }}/rofi", src: "{{ dotfiles }}/rofi" }

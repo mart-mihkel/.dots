@@ -10,8 +10,8 @@ size = 14
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }
 
 [colors.primary]
-background = "#FCFCFC"
-foreground = "#5C6166"
+background = "#fcfcfc"
+foreground = "#5c6166"
 
 [colors.normal]
 black   = "#010101"

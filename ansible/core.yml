@@ -13,9 +13,9 @@
       - bluez-utils
       - bluez
       - brightnessctl
-      - pulseaudio
-      - pulseaudio-alsa
-      - pulseaudio-bluetooth
+      - pipewire-alsa
+      - pipewire-pulse
+      - wireplumber
       - pamixer
       - openssl
       - openssh
