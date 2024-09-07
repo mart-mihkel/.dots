@@ -1,0 +1,47 @@
+* {
+	font-family: "UbuntuMono Nerd Font";
+	font-size: 14px;
+
+	background: transparent;
+	background-color: transparent;
+}
+
+#window {
+	border: 1px solid #000000;
+	background-color: #fcfcfc;
+	width: 100px;
+}
+
+#input {
+	padding: 0 0.5rem;
+	border-radius: 0;
+}
+
+#input:focus {
+	outline: none;
+}
+
+#scroll {
+	border: none;
+}
+
+#text:selected {
+	color: #fcfcfc;
+	font-weight: bold;
+}
+
+#text {
+	border: none;
+	padding: 0;
+}
+
+#entry {
+	border: none;
+	font-weight: bold;
+}
+
+#entry:selected {
+	outline: none;
+	border: none;
+	background: #000000;
+}
