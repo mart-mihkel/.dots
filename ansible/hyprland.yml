@@ -13,9 +13,7 @@
       - hypridle
       - hyprlock
       - hyprpaper
-      - rofimoji
       - rofi-wayland
-      - ydotool
 
   - name: symlink configs
     file:
