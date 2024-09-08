@@ -1,4 +1,0 @@
-user: "maun"
-home: "/home/{{ user }}"
-config: "{{ home }}/.config"
-dotfiles: "{{ home }}/git/dotfiles"
