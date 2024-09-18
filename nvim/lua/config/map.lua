@@ -12,18 +12,18 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.api.nvim_create_autocmd("VimEnter", {
-	desc = "Explore on open",
-	callback = function()
-		if vim.tbl_count(vim.v.argv) == 2 then
-			vim.cmd("Explore")
-		end
-	end,
+    desc = "Explore on open",
+    callback = function()
+        if vim.tbl_count(vim.v.argv) == 2 then
+            vim.cmd("Explore")
+        end
+    end,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    desc = "Highlight when yanking text",
+    group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
