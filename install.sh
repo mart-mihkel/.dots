@@ -13,10 +13,8 @@ UCODE="intel-ucode"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-FONTDIR="$HOME/local/share/fonts"
-
 if [[ -z "$1" || "$1" == "core" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[core]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
 
     usermod -a -G wheel "$USER"
     pacman -S --needed --noconfirm base base-devel linux linux-firmware sudo man curl neovim openssl openssh "$UCODE"
@@ -24,40 +22,37 @@ if [[ -z "$1" || "$1" == "core" ]]; then
     if [[ ! -e /usr/bin/yay ]]; then
         git clone https://aur.archlinux.org/yay-bin.git
         (cd yay-bin && makepkg -si)
-        rm -rf yay-bin
+        rm -rfe yay-bin
     fi
 
-    cp -rf "$DOTS/nvim" "$CFG"
+    cp -rfv "$DOTS/nvim" "$CFG"
 fi
 
 if [[ -z "$1" || "$1" == "power" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[power]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[power]${ENDCOLOR}\n"
 
     su "$USER" -c "yay -S --needed --noconfirm auto-cpufreq"
 fi
 
 if [[ -z "$1" || "$1" == "network" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[network]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[network]${ENDCOLOR}\n"
 
     groupadd network
     usermod -a -G network "$USER"
 
-    pacman -S --needed --noconfirm iwd
+    pacman -S --needed --noconfirm networkmanager
 
-    rm -f /etc/iwd/main.conf
-    echo -e "[General]\nEnableNetworkConfiguration=true" > /etc/iwd/main.conf
-
-    systemctl enable iwd.service
+    systemctl enable NetworkManager
 fi
 
 if [[ -z "$1" || "$1" == "bluetooth" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[bluetooth]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[bluetooth]${ENDCOLOR}\n"
 
     pacman -S --needed --noconfirm bluez bluez-utils
 fi
 
 if [[ -z "$1" || "$1" == "docker" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[docker]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[docker]${ENDCOLOR}\n"
 
     groupadd docker
     usermod -a -G docker "$USER"
@@ -67,7 +62,7 @@ if [[ -z "$1" || "$1" == "docker" ]]; then
 fi
 
 if [[ -z "$1" || "$1" == "git" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[git]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[git]${ENDCOLOR}\n"
 
     git config --global user.name "$GITNAME"
     git config --global user.email "$GITMAIL"
@@ -76,14 +71,14 @@ if [[ -z "$1" || "$1" == "git" ]]; then
 fi
 
 if [[ -z "$1" || "$1" == "bash" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[bash]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[bash]${ENDCOLOR}\n"
 
     pacman -S --needed --noconfirm bash-completion
-    cp -f "$DOTS/.bashrc" "$HOME/.bashrc"
+    cp -fv "$DOTS/.bashrc" "$HOME/.bashrc"
 fi
 
 if [[ -z "$1" || "$1" == "common" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[common]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[common]${ENDCOLOR}\n"
 
     pacman -S --needed --noconfirm neofetch btop ripgrep make gcc go
 
@@ -97,30 +92,41 @@ if [[ -z "$1" || "$1" == "common" ]]; then
     fi
 fi
 
-if [[ -z "$1" || "$1" == "fonts" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[fonts]${ENDCOLOR}\n\n\n"
-
-    pacman -S --needed --noconfirm fontconfig noto-fonts-emoji noto-fonts-cjk
-
-    mkdir -p "$FONTDIR"
-    cp -f "$DOTS/fonts/." "$FONTDIR"
-    fc-cache -f -v
-fi
-
 if [[ -z "$1" || "$1" == "audio" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[audio]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[audio]${ENDCOLOR}\n"
 
     pacman -S --needed --noconfirm pipewire-alsa pipewire-pulse wireplumber
 fi
 
 if [[ -z "$1" || "$1" == "hyprland" ]]; then
-    echo -e "\n\n\n${BOLDGREEN}[hyprland]${ENDCOLOR}\n\n\n"
+    echo -e "\n${BOLDGREEN}[hyprland]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper waybar wofi swaync polkit-kde-agent cliphist brightnessctl alacritty
+    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper waybar wofi swaync polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd
     su "$USER" -c "yay -S --needed --noconfirm xdg-desktop-portal-hyprland-git"
 
-    cp -rf "$DOTS/alacritty" "$CFG"
-    cp -rf "$DOTS/waybar" "$CFG"
-    cp -rf "$DOTS/wofi" "$CFG"
-    cp -rf "$DOTS/hypr" "$CFG"
+    cp -rfv "$DOTS/alacritty" "$CFG"
+    cp -rfv "$DOTS/waybar" "$CFG"
+    cp -rfv "$DOTS/wofi" "$CFG"
+    cp -rfv "$DOTS/hypr" "$CFG"
+fi
+
+if [[ "$1" == "configs" ]]; then
+    echo -e "\n${BOLDGREEN}[configs]${ENDCOLOR}\n"
+
+    cp -fv "$DOTS/.bashrc" "$HOME/.bashrc"
+
+    rm -rfv "$CFG/nvim"
+    cp -rfv "$DOTS/nvim" "$CFG"
+
+    rm -rfv "$CFG/alacritty"
+    cp -rfv "$DOTS/alacritty" "$CFG"
+
+    rm -rfv "$CFG/waybar"
+    cp -rfv "$DOTS/waybar" "$CFG"
+
+    rm -rfv "$CFG/wofi"
+    cp -rfv "$DOTS/wofi" "$CFG"
+
+    rm -rfv "$CFG/hypr"
+    cp -rfv "$DOTS/hypr" "$CFG"
 fi
