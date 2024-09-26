@@ -1,6 +1,6 @@
 [window]
 decorations = "None"
-padding = { x = 8, y = 8 }
+padding = { x = 4, y = 4 }
 
 [font]
 normal = { family = "UbuntuMono Nerd Font", style = "Regular" }
@@ -10,25 +10,5 @@ size = 14
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }
 
 [colors.primary]
-background = "#fcfcfc"
-foreground = "#5c6166"
-
-[colors.normal]
-black   = "#010101"
-red     = "#e7666a"
-green   = "#80ab24"
-yellow  = "#eba54d"
-blue    = "#4196df"
-magenta = "#9870c3"
-cyan    = "#51b891"
-white   = "#c1c1c1"
-
-[colors.bright]
-black   = "#343434"
-red     = "#ee9295"
-green   = "#9fd32f"
-yellow  = "#f0bc7b"
-blue    = "#6daee6"
-magenta = "#b294d2"
-cyan    = "#75c7a8"
-white   = "#dbdbdb"
+background = "#f8f8f8"
+foreground = "#6b6b6b"
