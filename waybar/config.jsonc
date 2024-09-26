@@ -3,24 +3,24 @@
     "position": "top",
     "start_hidden": true,
     "modules-left": [
-    "hyprland/workspaces"
-    ],
-    "modules-center": [
-        "clock"
+       "hyprland/workspaces"
     ],
     "modules-right": [
         "network",
         "bluetooth",
         "pulseaudio",
-        "cpu",
-        "memory",
-        "disk",
         "backlight",
-        "battery"
+        "battery",
+        "clock"
     ],
     "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": " ",
+            "default": " "
+        },
         "persistent-workspaces": {
-            "*": 4
+            "*": 9
         }
     },
     "clock": {
@@ -32,16 +32,6 @@
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
-    },
-    "cpu": {
-        "interval": 2,
-        "format": "{usage}%  ",
-    },
-    "memory": {
-        "format": "{percentage}%   {swapPercentage}% 󰾴 "
-    },
-    "disk": {
-        "format": "{percentage_used}% 󰋊 "
     },
     "battery": {
         "states": {
@@ -57,9 +47,9 @@
         "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "]
     },
     "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "format": "{status}  ",
+        "format-connected": "{device_alias}  ",
+        "format-connected-battery": "{device_alias} {device_battery_percentage}%  ",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -77,7 +67,7 @@
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": "muted {icon} {format_source}",
-        "format-muted": "muted {icon} {format_source}",
+        "format-muted": "󰖁 {format_source}",
         "format-source": "{volume}%  ",
         "format-source-muted": " ",
         "format-icons": {
