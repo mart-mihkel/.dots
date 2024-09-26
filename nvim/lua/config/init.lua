@@ -1,4 +1,4 @@
 require("config.opt")
 require("config.map")
 require("config.cmd")
-require("config.init_lazy")
+require("config.init-lazy")

@@ -8,6 +8,7 @@ return {
     },
     config = function()
         require("telescope").setup({
+            pickers = { find_files = { hidden = true } },
             defaults = {
                 sorting_strategy = "ascending",
                 layout_strategy = "vertical",
