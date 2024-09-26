@@ -17,7 +17,12 @@ if [[ -z "$1" || "$1" == "core" ]]; then
     echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
 
     usermod -a -G wheel "$USER"
-    pacman -S --needed --noconfirm base base-devel linux linux-firmware sudo man curl neovim openssl openssh "$UCODE"
+    pacman -S --needed --noconfirm base base-devel linux linux-firmware sudo man curl git neovim openssl openssh "$UCODE"
+
+    git config --global user.name "$GITNAME"
+    git config --global user.email "$GITMAIL"
+    git config --global core.editor nvim
+    git config --global init.defaultBranch master
 
     if [[ ! -e /usr/bin/yay ]]; then
         git clone https://aur.archlinux.org/yay-bin.git
@@ -61,20 +66,11 @@ if [[ -z "$1" || "$1" == "docker" ]]; then
     systemctl enable docker
 fi
 
-if [[ -z "$1" || "$1" == "git" ]]; then
-    echo -e "\n${BOLDGREEN}[git]${ENDCOLOR}\n"
-
-    git config --global user.name "$GITNAME"
-    git config --global user.email "$GITMAIL"
-    git config --global core.editor nvim
-    git config --global init.defaultBranch master
-fi
-
 if [[ -z "$1" || "$1" == "bash" ]]; then
     echo -e "\n${BOLDGREEN}[bash]${ENDCOLOR}\n"
 
     pacman -S --needed --noconfirm bash-completion
-    cp -fv "$DOTS/.bashrc" "$HOME/.bashrc"
+    cp -fv "$DOTS/bash/.bashrc" "$HOME/.bashrc"
 fi
 
 if [[ -z "$1" || "$1" == "common" ]]; then
@@ -101,8 +97,12 @@ fi
 if [[ -z "$1" || "$1" == "hyprland" ]]; then
     echo -e "\n${BOLDGREEN}[hyprland]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper waybar wofi swaync polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd
+    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper greetd waybar wofi polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd
     su "$USER" -c "yay -S --needed --noconfirm xdg-desktop-portal-hyprland-git"
+
+    systemctl enable greetd.service
+
+    cp -fv "$DOTS/greetd/config.toml" "/etc/greetd/config.toml"
 
     cp -rfv "$DOTS/alacritty" "$CFG"
     cp -rfv "$DOTS/waybar" "$CFG"
@@ -113,7 +113,8 @@ fi
 if [[ "$1" == "configs" ]]; then
     echo -e "\n${BOLDGREEN}[configs]${ENDCOLOR}\n"
 
-    cp -fv "$DOTS/.bashrc" "$HOME/.bashrc"
+    cp -fv "$DOTS/greetd/config.toml" "/etc/greetd/config.toml"
+    cp -fv "$DOTS/bash/.bashrc" "$HOME/.bashrc"
 
     rm -rfv "$CFG/nvim"
     cp -rfv "$DOTS/nvim" "$CFG"
