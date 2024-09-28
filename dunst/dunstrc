@@ -1,0 +1,60 @@
+# vim: ft=cfg
+
+[global]
+    follow = mouse
+    width = 256
+    height = 128
+    offset = 16x16
+
+    progress_bar_height = 8
+    progress_bar_min_width = 128
+    progress_bar_max_width = 256
+    highlight = "#000000"
+
+    frame_width = 1
+    frame_color = "#000000"
+    background = "#f8f8f8"
+    foreground = "#000000"
+
+    gap_size = 8
+
+    idle_threshold = 120
+
+    font = "UbuntuMono Nerd Font" 8
+    format = "<span font='UbuntuMono Nerd Font 14'>%s</span>\n%b"
+    markup = full
+
+    ellipsize = middle
+
+    enable_recursive_icon_lookup = true
+    default_icon = off
+    icon_position = left
+    icon_path = /usr/share/icons/
+    min_icon_size = 32
+    max_icon_size = 128
+
+    sticky_history = yes
+    history_length = 20
+
+    dmenu = /usr/bin/wofi --show=dmenu dunst
+
+    layer = top
+    force_xwayland = false
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    frame_color = "#aac474"
+    timeout = 10
+
+[urgency_normal]
+    timeout = 10
+    override_pause_level = 30
+
+[urgency_critical]
+    frame_color = "#c55555"
+    timeout = 0
+    override_pause_level = 60
+

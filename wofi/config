@@ -1,4 +1,7 @@
-width=15%
-height=30%
+# vim: ft=cfg
+
+width=256
+height=512
 prompt=
-term=alacritty
+no_actions=true
+hide_search=true

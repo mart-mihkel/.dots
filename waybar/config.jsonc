@@ -9,7 +9,6 @@
         "network",
         "bluetooth",
         "pulseaudio",
-        "backlight",
         "battery",
         "clock"
     ],
@@ -18,17 +17,17 @@
         "format-icons": {
             "active": " ",
             "default": " "
-        },
-        "persistent-workspaces": {
-            "*": 9
         }
     },
     "clock": {
-        "format": "{:%H:%M}  ",
-        "format-alt": "{:%A, %B %d, %Y (%R)} 󰃭 ",
+        "format": "{:%H:%M}",
         "tooltip-format": "{calendar}",
+        "calendar": {
+            "format": {
+                "today": "<span color='#c55555'>{}</span>"
+            }
+        },
         "actions": {
-            "on-click-right": "mode",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
@@ -39,37 +38,32 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}%  ",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        "format-charging": "{capacity}% 󰂅 ",
+        "format-icons": ["󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", "󰁹 "]
     },
     "bluetooth": {
-        "format": "{status}  ",
+        "format": "",
         "format-connected": "{device_alias}  ",
-        "format-connected-battery": "{device_alias} {device_battery_percentage}%  ",
+        "format-connected-battery": "{device_alias} {device_battery_percentage}% 󰥈 ",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}% 󰥈 "
     },
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) 󰖩 ",
-        "format-ethernet": "{ipaddr}/{cidr} 󰈀 ",
-        "format-linked": "{ifname} (No IP) 󰌷 ",
-        "format-disconnected": "Disconnected 󰖪 ",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr} 󰊙 "
+        "tooltip-format": "{ifname} via {gwaddr}"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "muted {icon} {format_source}",
-        "format-muted": "󰖁 {format_source}",
+        "format-bluetooth": "{volume}% 󰂰 {format_source}",
+        "format-bluetooth-muted": "{volume}% 󰂲 {format_source}",
+        "format-muted": "{volume}%   {format_source}",
         "format-source": "{volume}%  ",
-        "format-source-muted": " ",
+        "format-source-muted": "{volume}%  ",
         "format-icons": {
             "default": [" ", " ", " "]
         }

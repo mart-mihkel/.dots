@@ -1,12 +1,12 @@
 * {
     font-family: "UbuntuMono Nerd Font";
-    font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     padding: 0;
 }
 
 window#waybar {
-    background: #ffffff;
+    background: #f8f8f8;
+    border-bottom: 1px solid #000000;
 }
 
 window#waybar.hidden {
@@ -14,9 +14,10 @@ window#waybar.hidden {
 }
 
 tooltip {
-    background: #fcfcfc;
-    border-radius: 0;
+    background: #f8f8f8;
     border: 1px solid #000000;
+    border-radius: 0;
+    text-shadow: none;
 }
 
 tooltip label {
@@ -25,32 +26,30 @@ tooltip label {
 
 #workspaces button {
     padding: 0.25rem;
-}
-
-#workspaces button.urgent {
-    color: #ee9295;
+    background: none;
+    border-radius: 0;
+    border: 0;
 }
 
 #clock,
 #battery,
 #network,
 #pulseaudio,
-#backlight,
 #bluetooth,
 #workspaces {
     color: #000000;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
+        background-color: #f8f8f8;
         color: black;
     }
 }
 
 #battery.critical:not(.charging) {
-    color: #ee9295;
+    color: #c55555;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

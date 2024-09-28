@@ -24,19 +24,7 @@ if [[ -z "$1" || "$1" == "core" ]]; then
     git config --global core.editor nvim
     git config --global init.defaultBranch master
 
-    if [[ ! -e /usr/bin/yay ]]; then
-        git clone https://aur.archlinux.org/yay-bin.git
-        (cd yay-bin && makepkg -si)
-        rm -rfe yay-bin
-    fi
-
     cp -rfv "$DOTS/nvim" "$CFG"
-fi
-
-if [[ -z "$1" || "$1" == "power" ]]; then
-    echo -e "\n${BOLDGREEN}[power]${ENDCOLOR}\n"
-
-    su "$USER" -c "yay -S --needed --noconfirm auto-cpufreq"
 fi
 
 if [[ -z "$1" || "$1" == "network" ]]; then
@@ -79,12 +67,11 @@ if [[ -z "$1" || "$1" == "common" ]]; then
     pacman -S --needed --noconfirm neofetch btop ripgrep make gcc go
 
     if [[ ! -e "$HOME/.rustup" ]]; then
-        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        su "$USER" - c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
     fi
 
     if [[ ! -e "$HOME/.nvm" ]]; then
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
-        nvm install 22
+        su "$USER" -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash"
     fi
 fi
 
@@ -97,8 +84,7 @@ fi
 if [[ -z "$1" || "$1" == "hyprland" ]]; then
     echo -e "\n${BOLDGREEN}[hyprland]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper greetd waybar wofi polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd
-    su "$USER" -c "yay -S --needed --noconfirm xdg-desktop-portal-hyprland-git"
+    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd
 
     systemctl enable greetd.service
 
@@ -106,6 +92,7 @@ if [[ -z "$1" || "$1" == "hyprland" ]]; then
 
     cp -rfv "$DOTS/alacritty" "$CFG"
     cp -rfv "$DOTS/waybar" "$CFG"
+    cp -rfv "$DOTS/dunst" "$CFG"
     cp -rfv "$DOTS/wofi" "$CFG"
     cp -rfv "$DOTS/hypr" "$CFG"
 fi
@@ -122,11 +109,14 @@ if [[ "$1" == "configs" ]]; then
     rm -rfv "$CFG/alacritty"
     cp -rfv "$DOTS/alacritty" "$CFG"
 
-    rm -rfv "$CFG/waybar"
-    cp -rfv "$DOTS/waybar" "$CFG"
-
     rm -rfv "$CFG/wofi"
     cp -rfv "$DOTS/wofi" "$CFG"
+
+    rm -rfv "$CFG/dunst"
+    cp -rfv "$DOTS/dunst" "$CFG"
+
+    rm -rfv "$CFG/waybar"
+    cp -rfv "$DOTS/waybar" "$CFG"
 
     rm -rfv "$CFG/hypr"
     cp -rfv "$DOTS/hypr" "$CFG"
