@@ -97,7 +97,7 @@ if [[ -z "$1" || "$1" == "hyprland" ]]; then
     cp -rfv "$DOTS/hypr" "$CFG"
 fi
 
-if [[ "$1" == "configs" ]]; then
+if [[ "$1" == "cfg" ]]; then
     echo -e "\n${BOLDGREEN}[configs]${ENDCOLOR}\n"
 
     cp -fv "$DOTS/greetd/config.toml" "/etc/greetd/config.toml"

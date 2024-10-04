@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.netrw_banner = false
-vim.g.netrw_liststyle = 3
 
 vim.opt.number = true
 vim.opt.relativenumber = true
