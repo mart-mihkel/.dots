@@ -13,10 +13,9 @@
         "clock"
     ],
     "hyprland/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "active": " ",
-            "default": " "
+        "move-to-monitor": true,
+        "persistent-workspaces": {
+            "*": 10
         }
     },
     "bluetooth": {

@@ -1,23 +1,23 @@
 * {
     font-family: "UbuntuMono Nerd Font";
     font-size: 16px;
+    text-shadow: none;
+    box-shadow: none;
+    background: none;
+    border: none;
+    border-radius: 0;
     padding: 0;
+    margin: 0;
 }
 
-window#waybar {
+window > box {
+    margin: 8px 8px 4px 8px;
     background: #f8f8f8;
-    border-bottom: 1px solid #000000;
-}
-
-window#waybar.hidden {
-    opacity: 0;
 }
 
 tooltip {
     background: #f8f8f8;
     border: 1px solid #000000;
-    border-radius: 0;
-    text-shadow: none;
 }
 
 tooltip label {
@@ -26,32 +26,31 @@ tooltip label {
 
 #workspaces button {
     padding: 0.25rem;
-    background: none;
-    border-radius: 0;
-    border: 0;
+}
+
+#workspaces button:hover,
+#workspaces button.active {
+    background: #d8d8d8;
 }
 
 #clock,
 #battery,
 #network,
 #pulseaudio,
-#bluetooth,
-#workspaces {
-    color: #000000;
-    padding: 0 0.75rem;
+#bluetooth {
+    padding: 0 1rem;
 }
 
 @keyframes blink {
     to {
-        background-color: #f8f8f8;
-        color: black;
+        color: #c55555;
     }
 }
 
+#workspaces.button.urgent,
 #battery.critical:not(.charging) {
-    color: #c55555;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
