@@ -1,6 +1,5 @@
 [window]
 decorations = "None"
-padding = { x = 4, y = 4 }
 
 [font]
 normal = { family = "UbuntuMono Nerd Font", style = "Regular" }

@@ -15,7 +15,7 @@ if [[ -z "$1" || "$1" == "core" ]]; then
     echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
 
     usermod -a -G wheel "$USER"
-    pacman -S --needed --noconfirm base base-devel linux linux-firmware intel-ucode sudo man curl git neovim openssl openssh networkmanager bash-completion
+    pacman -S --needed --noconfirm base linux linux-firmware intel-ucode sudo man curl git neovim openssl openssh networkmanager bash-completion
 
     groupadd network
     usermod -a -G network "$USER"
@@ -53,7 +53,7 @@ fi
 if [[ -z "$1" || "$1" == "desktop" ]]; then
     echo -e "\n${BOLDGREEN}[desktop]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pipewire pipewire-alsa pipewire-pulse wireplumber
+    pacman -S --needed --noconfirm hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pipewire pipewire-alsa pipewire-pulse wireplumber firefox
 
     systemctl enable greetd.service
 
@@ -69,4 +69,4 @@ fi
 # git clone https://aur.archlinux.org/yay-bin.git
 # (cd yay-bin && makepg -si)
 # rm -rf yay-bin
-# yay -S auto-cpufreq xdg-desktop-portal-hyprland-git grim slurp xwaylandvideobridge
+# yay -S intel-undervolt auto-cpufreq xdg-desktop-portal-hyprland-git grim slurp xwaylandvideobridge
