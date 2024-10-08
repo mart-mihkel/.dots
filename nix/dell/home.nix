@@ -19,8 +19,14 @@
     ];
 
     home.file = {
-        ".bashrc".source = ../bash/.bashrc;
         ".bash_profile".source = ../bash/.bash_profile;
+        ".bashrc".source = ../bash/.bashrc;
+
+        ".config/alacritty".source = ../alacritty;
+        ".config/waybar".source = ../waybar;
+        ".config/dunst".source = ../dunst;
+        ".config/hypr".source = ../hypr;
+        ".config/wofi".source = ../wofi;
         ".config/nvim".source = ../nvim;
     };
 

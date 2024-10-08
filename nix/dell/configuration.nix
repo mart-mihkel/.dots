@@ -30,6 +30,8 @@
 
     services.openssh.enable = true;
 
+    programs.nix-ld.enable = true;
+
     system.stateVersion = "24.05";
 }
 

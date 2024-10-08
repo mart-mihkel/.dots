@@ -15,13 +15,21 @@
         nixosConfigurations = {
             nas = nixpkgs.lib.nixosSystem {
                 inherit system;
-                modules = [ ./configuration.nix ];
+                modules = [ ./nas/configuration.nix ];
+            };
+            dell = nixpkgs.lib.nixosSystem {
+                inherit system;
+                modules = [ ./dell/configuration.nix ];
             };
         };
         homeConfigurations  = {
-            mart = home-manager.lib.homeManagerConfiguration {
+            nas = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${system};
-                modules = [ ./home.nix ];
+                modules = [ ./nas/home.nix ];
+            };
+            dell = home-manager.lib.homeManagerConfiguration {
+                pkgs = nixpkgs.legacyPackages.${system};
+                modules = [ ./dell/home.nix ];
             };
         };
     };
