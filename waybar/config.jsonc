@@ -2,20 +2,19 @@
     "layer": "top",
     "position": "top",
     "modules-left": [
-       "hyprland/workspaces"
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
     ],
     "modules-right": [
         "bluetooth",
         "network",
         "pulseaudio",
-        "battery",
-        "clock"
+        "battery"
     ],
     "hyprland/workspaces": {
-        "move-to-monitor": true,
-        "persistent-workspaces": {
-            "*": 10
-        }
+        "move-to-monitor": true
     },
     "bluetooth": {
         "format": "",
@@ -27,21 +26,21 @@
     },
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": "",
+        "format-ethernet": " ",
         "tooltip-format": "{ifname}:\t{ipaddr}/{cidr}\ngw:\t{gwaddr}/{cidr}",
-        "tooltip-format-wifi": "{essid} {signalStrength}%\n\n{ifname}:\t{ipaddr}/{cidr}\ngw:\t{gwaddr}/{cidr}",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+        "tooltip-format-wifi": "{essid} {signalStrength}%\n\n{ifname}:\t{ipaddr}/{cidr}\ngway:\t{gwaddr}/{cidr}",
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
     },
     "pulseaudio": {
         "format": "{icon}",
-        "format-muted": "",
+        "format-muted": " ",
         "format-bluetooth": "󰂰",
         "format-bluetooth-muted": "󰂲",
         "format-source": "",
-        "format-source-muted": "",
+        "format-source-muted": " ",
         "tooltip-format": "{desc} {volume}% {format_source} ",
         "format-icons": {
-            "default": ["", "", ""]
+            "default": [" ", " ", " "]
         }
     },
     "battery": {

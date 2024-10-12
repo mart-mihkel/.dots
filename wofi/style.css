@@ -1,10 +1,10 @@
 * {
     font-family: "UbuntuMono Nerd Font";
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
 
-    background: transparent;
-    background-color: transparent;
+    background: none;
+    background-color: none;
 
     border: none;
     border-radius: 0;
@@ -17,15 +17,10 @@
     background-color: #f8f8f8;
 }
 
-#input {
-    padding: 0 0.5rem;
-}
-
 #text:selected {
-    color: #fcfcfc;
-    font-weight: bold;
+    color: #000000;
 }
 
 #entry:selected {
-    background: #000000;
+    background: #d8d8d8;
 }

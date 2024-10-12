@@ -17,7 +17,6 @@ window > box {
 
 tooltip {
     background: #f8f8f8;
-    border: 1px solid #000000;
 }
 
 tooltip label {
@@ -28,6 +27,11 @@ tooltip label {
     padding: 0.25rem;
 }
 
+#clock:hover,
+#battery:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
 #workspaces button:hover,
 #workspaces button.active {
     background: #d8d8d8;
@@ -36,8 +40,8 @@ tooltip label {
 #clock,
 #battery,
 #network,
-#pulseaudio,
-#bluetooth {
+#bluetooth,
+#pulseaudio {
     padding: 0 1rem;
 }
 
