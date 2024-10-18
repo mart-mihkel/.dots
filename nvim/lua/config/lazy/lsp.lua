@@ -3,7 +3,6 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "j-hui/fidget.nvim",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
@@ -15,20 +14,13 @@ return {
         local luasnip = require("luasnip")
         local cmp = require("cmp")
         local cmp_lsp = require("cmp_nvim_lsp")
+
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities()
         )
-
-        require("fidget").setup({
-            notification = {
-                window = {
-                    winblend = 0
-                }
-            }
-        })
 
         require("mason").setup()
         require("mason-lspconfig").setup({
@@ -72,6 +64,7 @@ return {
             completion = { completeopt = "menu,menuone,noinsert" },
             mapping = cmp.mapping.preset.insert({
                 ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-n>"] = cmp.mapping.select_next_item(),
                 ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-Space>"] = cmp.mapping.complete({}),
@@ -92,44 +85,17 @@ return {
                     vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                 end
 
-                map("K", vim.lsp.buf.hover, "Hover Documentation")
-                map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
-                map("gr", builtin.lsp_references, "[G]oto [R]eferences")
-                map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
-                map("<leader>D", builtin.lsp_type_definitions, "Type [D]efinition")
-                map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
-                map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-                map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-                map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+                map("K", vim.lsp.buf.hover, "Hover documentation")
+                map("gr", builtin.lsp_references, "Goto references")
+                map("gd", builtin.lsp_definitions, "Goto definition")
+                map("gi", builtin.lsp_implementations, "Goto implementation")
+
+                map("<leader>rn", vim.lsp.buf.rename, "Rename")
+                map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+                map("<leader>D", builtin.lsp_type_definitions, "Type definition")
+                map("<leader>ds", builtin.lsp_document_symbols, "Document symbols")
+                map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "Workspace symbols")
             end,
         })
-
-        vim.diagnostic.config({
-            float = {
-                focusable = false,
-                style = "minimal",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
-
-        local border = {
-            { "╭", "FloatBorder" },
-            { "─", "FloatBorder" },
-            { "╮", "FloatBorder" },
-            { "│", "FloatBorder" },
-            { "╯", "FloatBorder" },
-            { "─", "FloatBorder" },
-            { "╰", "FloatBorder" },
-            { "│", "FloatBorder" },
-        }
-
-        local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-        function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-            opts = opts or {}
-            opts.border = opts.border or border
-            return orig_util_open_floating_preview(contents, syntax, opts, ...)
-        end
     end,
 }
