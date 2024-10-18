@@ -11,16 +11,16 @@ DOTS="$HOME/git/dotfiles"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-CORE_PKGS="base linux linux-firmware intel-ucode sudo man-db curl git neovim openssl openssh networkmanager bash-completion"
+CORE_PKGS="base linux linux-firmware intel-ucode sudo man-db curl git neovim openssl openssh sshfs networkmanager bash-completion"
 COMMON_PKGS="neofetch btop ripgrep make gcc go docker docker-compose docker-buildx containerd unzip"
-DESKTOP_PKGS="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pamixer pipewire pipewire-alsa pipewire-pulse wireplumber grim slurp firefox"
-YAY_PKGS="intel-undervolt auto-cpufreq xdg-desktop-portal-hyprland-git xwaylandvideobridge slack-desktop wofi-emoji"
+DESKTOP_PKGS="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pamixer pipewire pipewire-alsa pipewire-pulse wireplumber grim slurp firefox ccid pcsclite"
+YAY_PKGS="intel-undervolt auto-cpufreq xdg-desktop-portal-hyprland-git xwaylandvideobridge slack-desktop wofi-emoji qdigidoc4"
 
 if [[ -z "$1" || "$1" == "core" ]]; then
     echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
 
     usermod -a -G wheel "$USER"
-    pacman -S --needed --noconfirm "$CORE_PKGS"
+    pacman -S --needed --noconfirm $CORE_PKGS
 
     groupadd network
     usermod -a -G network "$USER"
@@ -35,13 +35,15 @@ if [[ -z "$1" || "$1" == "core" ]]; then
     su "$USER" -c "ln -sf '$DOTS/bash/.bash_profile' '$HOME/.bash_profile'"
 
     su "$USER" -c "ln -sf '$DOTS/nvim' '$CFG'"
+
+    mkdir -p /root/.config
     ln -sf "$DOTS/nvim" /root/.config
 fi
 
 if [[ -z "$1" || "$1" == "common" ]]; then
     echo -e "\n${BOLDGREEN}[common]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm "$COMMON_PKGS"
+    pacman -S --needed --noconfirm $COMMON_PKGS
 
     groupadd docker
     usermod -a -G docker "$USER"
@@ -58,9 +60,10 @@ fi
 if [[ -z "$1" || "$1" == "desktop" ]]; then
     echo -e "\n${BOLDGREEN}[desktop]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm "$DESKTOP_PKGS"
+    pacman -S --needed --noconfirm $DESKTOP_PKGS
 
     systemctl enable greetd.service
+    systemctl enable pcscd.service
 
     ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
 
