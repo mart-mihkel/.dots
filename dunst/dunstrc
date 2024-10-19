@@ -2,13 +2,10 @@
 
 [global]
     follow = mouse
-    width = 256
-    height = 128
+    width = 300
     offset = 16x16
 
     progress_bar_height = 8
-    progress_bar_min_width = 128
-    progress_bar_max_width = 256
     highlight = "#000000"
 
     frame_width = 1
@@ -20,8 +17,8 @@
 
     idle_threshold = 120
 
-    font = "UbuntuMono Nerd Font" 8
-    format = "<span font='UbuntuMono Nerd Font 14'>%s</span>\n%b"
+    font = "UbuntuMono Nerd Font" 12
+    format = "<span font='UbuntuMono Nerd Font 16' font_weight='bold'>%s</span>\n%b"
     markup = full
 
     ellipsize = middle
@@ -31,7 +28,7 @@
     icon_position = left
     icon_path = /usr/share/icons/
     min_icon_size = 32
-    max_icon_size = 128
+    max_icon_size = 32
 
     sticky_history = yes
     history_length = 20
