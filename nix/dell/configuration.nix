@@ -7,9 +7,8 @@
 
     boot.loader.systemd-boot.enable = true;
 
-    networking.hostName = "nas";
+    networking.hostName = "dell";
     networking.networkmanager.enable = true;
-    networking.firewall.allowedTCPPorts = [ 22 ];
 
     time.timeZone = "Europe/Tallinn";
 
@@ -24,15 +23,10 @@
         extraGroups = [ "wheel" "network" "docker" ];
     };
 
-    environment.systemPackages = with pkgs; [
-        vim
-    ];
+    environment.systemPackages = with pkgs; [ vim ];
 
     virtualisation.docker.enable = true;
-
     services.openssh.enable = true;
-
-    programs.nix-ld.enable = true;
 
     system.stateVersion = "24.05";
 }
