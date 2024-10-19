@@ -8,20 +8,15 @@
         neofetch
         gnumake
         ripgrep
-        neovim
         nodejs
         rustc
         cargo
         curl
         btop
         gcc
-        git
     ];
 
     home.file = {
-        ".bash_profile".source = ../bash/.bash_profile;
-        ".bashrc".source = ../bash/.bashrc;
-
         ".config/alacritty".source = ../alacritty;
         ".config/waybar".source = ../waybar;
         ".config/dunst".source = ../dunst;
@@ -35,6 +30,24 @@
         userName = "mart-mihkel";
         userEmail = "mart.mihkel.aun@gmail.com";
         extraConfig.core.editor = "nvim";
+    };
+
+    programs.bash = {
+        enable = true;
+    };
+
+    programs.neovim = {
+        enable = true;
+        vimAlias = true;
+        extraPackages = with pkgs; [
+            typescript-language-server
+            lua-language-server
+            rust-analyzer
+            pyright
+
+            prettierd
+            stylua
+        ];
     };
 
     programs.home-manager.enable = true;

@@ -21,10 +21,12 @@
 
     users.users.mart = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
+        extraGroups = [ "wheel" "network" "docker" ];
     };
 
-    environment.systemPackages = [ pkgs.vim ];
+    environment.systemPackages = with pkgs; [
+        vim
+    ];
 
     virtualisation.docker.enable = true;
 

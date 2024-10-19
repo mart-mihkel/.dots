@@ -22,14 +22,11 @@
                 modules = [ ./dell/configuration.nix ];
             };
         };
+
         homeConfigurations  = {
-            nas = home-manager.lib.homeManagerConfiguration {
+            mart = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${system};
-                modules = [ ./nas/home.nix ];
-            };
-            dell = home-manager.lib.homeManagerConfiguration {
-                pkgs = nixpkgs.legacyPackages.${system};
-                modules = [ ./dell/home.nix ];
+                modules = [ ./home.nix ];
             };
         };
     };

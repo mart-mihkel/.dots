@@ -10,7 +10,7 @@
     networking.hostName = "nas";
     networking.networkmanager.enable = true;
     networking.firewall.allowedTCPPorts = [ 22 ];
-
+ 
     time.timeZone = "Europe/Tallinn";
 
     i18n.defaultLocale = "en_US.UTF-8";
@@ -21,16 +21,13 @@
 
     users.users.mart = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
+        extraGroups = [ "wheel" "network" "docker" ];
     };
 
-    environment.systemPackages = [ pkgs.vim ];
+    environment.systemPackages = with pkgs; [ vim ];
 
     virtualisation.docker.enable = true;
-
     services.openssh.enable = true;
-
-    programs.nix-ld.enable = true;
 
     system.stateVersion = "24.05";
 }
