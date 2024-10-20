@@ -14,4 +14,8 @@
             stylua
         ];
     };
+
+    file = {
+        ".config/nvim".source = ../../nvim;
+    };
 }

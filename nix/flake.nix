@@ -17,10 +17,6 @@
                 inherit system;
                 modules = [ ./nas/configuration.nix ];
             };
-            dell = nixpkgs.lib.nixosSystem {
-                inherit system;
-                modules = [ ./dell/configuration.nix ];
-            };
         };
 
         homeConfigurations  = {
