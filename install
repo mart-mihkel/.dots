@@ -11,16 +11,19 @@ DOTS="$HOME/git/dotfiles"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-CORE_PKGS="base linux linux-firmware intel-ucode sudo man-db curl git neovim vim tmux openssl openssh sshfs networkmanager bash-completion"
-COMMON_PKGS="neofetch btop ripgrep make gcc go r docker docker-compose docker-buildx containerd unzip zip"
-DESKTOP_PKGS="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pamixer pipewire pipewire-alsa pipewire-pulse wireplumber grim slurp firefox ccid pcsclite gammastep"
-YAY_PKGS="intel-undervolt auto-cpufreq wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge slack-desktop qdigidoc4 discord"
+PKGS_CORE="base linux linux-firmware intel-ucode sudo man-db git curl wget neovim vim tmux openssl openssh net-tools networkmanager bash-completion"
+PKGS_COMMON="neofetch btop ripgrep make gcc go r docker docker-compose docker-buildx containerd unzip zip"
+PKGS_LSP="rust-analyzer lua-language-server typescript-language-server pyright"
+PKGS_WAYLAND="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst polkit-kde-agent alacritty grim slurp"
+PKGS_HARDWARE="pamixer pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite gammastep brightnessctl"
+PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd firefox"
+PKGS_AUR="intel-undervolt auto-cpufreq wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge slack-desktop qdigidoc4 discord"
 
 if [[ -z "$1" || "$1" == "core" ]]; then
     echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
 
     usermod -a -G wheel "$USER"
-    pacman -S --needed --noconfirm $CORE_PKGS
+    pacman -S --needed --noconfirm $PKGS_CORE
 
     groupadd network
     usermod -a -G network "$USER"
@@ -40,7 +43,7 @@ fi
 if [[ -z "$1" || "$1" == "common" ]]; then
     echo -e "\n${BOLDGREEN}[common]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm $COMMON_PKGS
+    pacman -S --needed --noconfirm $PKGS_COMMON $PKGS_LSP
 
     groupadd docker
     usermod -a -G docker "$USER"
@@ -57,7 +60,7 @@ fi
 if [[ -z "$1" || "$1" == "desktop" ]]; then
     echo -e "\n${BOLDGREEN}[desktop]${ENDCOLOR}\n"
 
-    pacman -S --needed --noconfirm $DESKTOP_PKGS
+    pacman -S --needed --noconfirm $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP
 
     systemctl enable greetd.service
     systemctl enable pcscd.service
@@ -75,6 +78,6 @@ if [[ "$1" == "clean" ]]; then
     echo -e "\n${BOLDGREEN}[clean]${ENDCOLOR}\n"
 
     pacman -D --asdeps $(pacman -Qqe)
-    pacman -D --asexplicit $CORE_PKGS $COMMON_PKGS $DESKTOP_PKGS $YAY_PKGS yay
+    pacman -D --asexplicit $PKGS_CORE $PKGS_COMMON $PKGS_LSP $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP $PKGS_AUR yay
     pacman -Qdtq | pacman -Rns -
 fi
