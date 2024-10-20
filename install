@@ -11,10 +11,10 @@ DOTS="$HOME/git/dotfiles"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-CORE_PKGS="base linux linux-firmware intel-ucode sudo man-db curl git neovim tmux openssl openssh sshfs networkmanager bash-completion"
+CORE_PKGS="base linux linux-firmware intel-ucode sudo man-db curl git neovim vim tmux openssl openssh sshfs networkmanager bash-completion"
 COMMON_PKGS="neofetch btop ripgrep make gcc go r docker docker-compose docker-buildx containerd unzip zip"
-DESKTOP_PKGS="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent cliphist brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pamixer pipewire pipewire-alsa pipewire-pulse wireplumber grim slurp firefox ccid pcsclite"
-YAY_PKGS="intel-undervolt auto-cpufreq xdg-desktop-portal-hyprland-git xwaylandvideobridge slack-desktop wofi-emoji qdigidoc4 discord"
+DESKTOP_PKGS="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst libnotify polkit-kde-agent brightnessctl alacritty noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd bluez bluez-utils pamixer pipewire pipewire-alsa pipewire-pulse wireplumber grim slurp firefox ccid pcsclite gammastep"
+YAY_PKGS="intel-undervolt auto-cpufreq wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge slack-desktop qdigidoc4 discord"
 
 if [[ -z "$1" || "$1" == "core" ]]; then
     echo -e "\n${BOLDGREEN}[core]${ENDCOLOR}\n"
@@ -33,9 +33,7 @@ if [[ -z "$1" || "$1" == "core" ]]; then
 
     su "$USER" -c "ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'"
     su "$USER" -c "ln -sf '$DOTS/bash/.bash_profile' '$HOME/.bash_profile'"
-
     su "$USER" -c "ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'"
-
     su "$USER" -c "ln -sf '$DOTS/nvim' '$CFG'"
 fi
 
