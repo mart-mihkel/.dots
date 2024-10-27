@@ -67,11 +67,3 @@ if [[ -z "$1" || "$1" == "extra" ]]; then
 
     su aur -c "yay -S --needed --noconfirm $PKGS_EXTRA"
 fi
-
-if [[ "$1" == "clean" ]]; then
-    echo -e "\n${BOLDGREEN}[clean]${ENDCOLOR}\n"
-
-    pacman -D --asdeps $(pacman -Qqe)
-    pacman -D --asexplicit $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP yay
-    pacman -Qdtq | pacman -Rns -
-fi
