@@ -61,11 +61,16 @@ if [[ -z "$1" || "$1" == "common" ]]; then
     git config --global init.defaultBranch master
 
     su "$USER" -c "
-        ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'
-        ln -sf '$DOTS/bash/.bash_profile' '$HOME/.bash_profile'
-        ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'
         ln -sf '$DOTS/nvim' '$CFG'
+        ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'
+        ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'
     "
+
+    INPUTRC="/etc/inputrc"
+    IGNORECASE="set completion-ignore-case on"
+    if [[ ! -f "$INPUTRC" || $(grep -Fxq "$IGNORECASE" "$INPUTRC") ]] ; then
+        echo $IGNORECASE >> $INPUTRC
+    fi
 fi
 
 if [[ -z "$1" || "$1" == "extra" ]]; then
