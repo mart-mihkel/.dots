@@ -1,6 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
@@ -8,38 +10,42 @@ return {
     },
     config = function()
         local lspconfig = require("lspconfig")
-
         local capabilities = vim.tbl_deep_extend(
             "force",
             lspconfig.util.default_config.capabilities,
             require("cmp_nvim_lsp").default_capabilities()
         )
 
-        lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    runtime = { version = "LuaJIT" },
-                    diagnostics = { globals = { "vim" } },
-                },
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls" },
+            handlers = {
+                function(server)
+                    require("lspconfig")[server].setup({ capabilities = capabilities })
+                end,
+                ["rust_analyzer"] = function()
+                    require("lspconfig").rust_analyzer.setup({
+                        settings = {
+                            ["rust-analyzer"] = {
+                                cargo = { features = "all" },
+                            },
+                        },
+                    })
+                end,
+                ["lua_ls"] = function()
+                    require("lspconfig").lua_ls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            Lua = {
+                                runtime = { version = "LuaJIT" },
+                                diagnostics = {
+                                    globals = { "vim" },
+                                },
+                            },
+                        },
+                    })
+                end,
             },
-        })
-
-        lspconfig.rust_analyzer.setup({
-            capabilities = capabilities,
-            settings = {
-                ["rust-analyzer"] = {
-                    cargo = { features = "all" },
-                },
-            },
-        })
-
-        lspconfig.ts_ls.setup({
-            capabilities = capabilities
-        })
-
-        lspconfig.pyright.setup({
-            capabilities = capabilities
         })
 
         local cmp = require("cmp")

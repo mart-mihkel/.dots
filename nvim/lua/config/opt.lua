@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.guicursor = "n-v-c-i:block-nCursor,i-ci:block-nCursor-blinkwait1-blinkon75-blinkoff75"
+vim.opt.laststatus = 3
 
 vim.opt.mouse = "a"
 vim.opt.inccommand = "split"
