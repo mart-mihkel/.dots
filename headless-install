@@ -11,12 +11,9 @@ DOTS="$HOME/git/dotfiles"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode grub"
-PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh net-tools networkmanager intel-undervolt auto-cpufreq wol"
-PKGS_EXTRA="neofetch ripgrep python cmake make nvm gcc r docker docker-compose docker-buildx containerd unzip zip cloudflared flatpak"
-PKGS_WAYLAND="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst polkit-kde-agent alacritty grim slurp wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge"
-PKGS_HARDWARE="pamixer pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite gammastep brightnessctl"
-PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd firefox slack-desktop qdigidoc4 discord"
+PKGS_CORE="base base-devel linux-lts linux-firmware amd-ucode grub mesa"
+PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh net-tools wpa_supplicant dhcpcd"
+PKGS_EXTRA="neofetch ripgrep cmake make nvm gcc docker docker-compose docker-buildx containerd cloudflared"
 
 if ! id -u aur > /dev/null 2>&1; then
     echo -e "\n${BOLDGREEN}[aur user setup]${ENDCOLOR}\n"
@@ -50,10 +47,7 @@ if [[ -z "$1" || "$1" == "common" ]]; then
     groupadd docker
     usermod -a -G docker "$USER"
 
-    groupadd network
-    usermod -a -G network "$USER"
-
-    systemctl enable NetworkManager
+    systemctl enable sshd.service
 
     git config --global user.name "$GITNAME"
     git config --global user.email "$GITMAIL"
@@ -72,25 +66,6 @@ if [[ -z "$1" || "$1" == "extra" ]]; then
     echo -e "\n${BOLDGREEN}[extra]${ENDCOLOR}\n"
 
     su aur -c "yay -S --needed --noconfirm $PKGS_EXTRA"
-fi
-
-if [[ -z "$1" || "$1" == "desktop" ]]; then
-    echo -e "\n${BOLDGREEN}[desktop]${ENDCOLOR}\n"
-
-    su aur -c "yay -S --needed --noconfirm $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP"
-
-    systemctl enable greetd.service
-    systemctl enable pcscd.service
-
-    ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
-
-    su "$USER" -c "
-        ln -sf '$DOTS/alacritty' '$CFG'
-        ln -sf '$DOTS/waybar' '$CFG'
-        ln -sf '$DOTS/dunst' '$CFG'
-        ln -sf '$DOTS/wofi' '$CFG'
-        ln -sf '$DOTS/hypr' '$CFG'
-    "
 fi
 
 if [[ "$1" == "clean" ]]; then
