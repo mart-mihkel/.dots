@@ -11,7 +11,7 @@ DOTS="$HOME/git/dotfiles"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-PKGS_CORE="base linux linux-firmware intel-ucode sudo man-db git curl wget neovim vim tmux openssl openssh net-tools networkmanager bash-completion"
+PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode sudo man-db git curl wget neovim vim tmux openssl openssh net-tools networkmanager bash-completion"
 PKGS_COMMON="neofetch btop ripgrep make gcc go r docker docker-compose docker-buildx containerd unzip zip"
 PKGS_LSP="rust-analyzer lua-language-server typescript-language-server pyright"
 PKGS_WAYLAND="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst polkit-kde-agent alacritty grim slurp"
