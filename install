@@ -12,7 +12,7 @@ GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
 PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode grub"
-PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh net-tools networkmanager intel-undervolt auto-cpufreq wol"
+PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh networkmanager intel-undervolt auto-cpufreq wol"
 PKGS_EXTRA="neofetch ripgrep python cmake make nvm gcc r docker docker-compose docker-buildx containerd unzip zip cloudflared flatpak"
 PKGS_WAYLAND="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst polkit-kde-agent alacritty grim slurp wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge"
 PKGS_HARDWARE="pamixer pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite gammastep brightnessctl"
@@ -45,12 +45,11 @@ if [[ -z "$1" || "$1" == "common" ]]; then
 
     su aur -c "yay -S --needed --noconfirm $PKGS_COMMON"
 
-    usermod -a -G wheel "$USER"
-
     groupadd docker
-    usermod -a -G docker "$USER"
-
     groupadd network
+
+    usermod -a -G wheel "$USER"
+    usermod -a -G docker "$USER"
     usermod -a -G network "$USER"
 
     systemctl enable NetworkManager
@@ -85,8 +84,8 @@ if [[ -z "$1" || "$1" == "desktop" ]]; then
 
     su aur -c "yay -S --needed --noconfirm $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP"
 
-    systemctl enable greetd.service
     systemctl enable pcscd.service
+    systemctl enable greetd.service
 
     ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
 
