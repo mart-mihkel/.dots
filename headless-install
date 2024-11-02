@@ -12,7 +12,7 @@ GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
 PKGS_CORE="base base-devel linux-lts linux-firmware amd-ucode grub mesa"
-PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh net-tools wpa_supplicant dhcpcd"
+PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh"
 PKGS_EXTRA="neofetch ripgrep cmake make nvm gcc docker docker-compose docker-buildx containerd cloudflared"
 
 if ! id -u aur > /dev/null 2>&1; then
@@ -42,12 +42,15 @@ if [[ -z "$1" || "$1" == "common" ]]; then
 
     su aur -c "yay -S --needed --noconfirm $PKGS_COMMON"
 
-    usermod -a -G wheel "$USER"
-
     groupadd docker
+
+    usermod -a -G wheel "$USER"
     usermod -a -G docker "$USER"
 
     systemctl enable sshd.service
+    systemctl enable docker.service
+    systemctl enable systemd-networkd.service
+    systemctl enable systemd-resolved.service
 
     git config --global user.name "$GITNAME"
     git config --global user.email "$GITMAIL"
