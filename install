@@ -38,7 +38,11 @@ if ! command -v yay &> /dev/null; then
     rm -rf /tmp/yay-bin
 fi
 
-if [[ -z "$1" || "$1" == "default" ]]; then
+if [[ -z "$1" ]]; then 
+    echo "Usage: install [default | headless]"
+fi
+
+if [[ "$1" == "default" ]]; then
     echo -e "\n${BOLDGREEN}[default install]${ENDCOLOR}\n"
 
     su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP"
