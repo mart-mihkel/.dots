@@ -22,6 +22,11 @@ PKGS_CORE_HEADLESS="base base-devel linux-lts linux-firmware amd-ucode grub mesa
 PKGS_COMMON_HEADLESS="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh"
 PKGS_EXTRA_HEADLESS="neofetch ripgrep cmake make nvm gcc docker docker-compose docker-buildx containerd cloudflared"
 
+if [[ -z "$1" ]]; then 
+    echo "Usage: install [default | headless]"
+    exit 1
+fi
+
 if ! id -u aur > /dev/null 2>&1; then
     echo -e "\n${BOLDGREEN}[aur user setup]${ENDCOLOR}\n"
 
@@ -38,9 +43,6 @@ if ! command -v yay &> /dev/null; then
     rm -rf /tmp/yay-bin
 fi
 
-if [[ -z "$1" ]]; then 
-    echo "Usage: install [default | headless]"
-fi
 
 if [[ "$1" == "default" ]]; then
     echo -e "\n${BOLDGREEN}[default install]${ENDCOLOR}\n"
@@ -61,8 +63,7 @@ if [[ "$1" == "default" ]]; then
 
     git config --global user.name "$GITNAME"
     git config --global user.email "$GITMAIL"
-    git config --global core.editor nvim
-    git config --global init.defaultBranch master
+    git config --global core.editor vim
 
     ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
 
@@ -95,8 +96,7 @@ if [[ "$1" == "headless" ]]; then
 
     git config --global user.name "$GITNAME"
     git config --global user.email "$GITMAIL"
-    git config --global core.editor nvim
-    git config --global init.defaultBranch master
+    git config --global core.editor vim
 
     su "$USER" -c "
         ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'
