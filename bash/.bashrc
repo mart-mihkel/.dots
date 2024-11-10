@@ -1,6 +1,6 @@
 [[ $- != *i* ]] && return
 
-PS1="\[\033[01;34m\]\w\[\033[00m\]\$ "
+PS1="\[\033[01;34m\]\W\[\033[00m\]\$ "
 
 if [[ -r /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
