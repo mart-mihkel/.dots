@@ -4,6 +4,7 @@
     imports = [
         ./hardware-configuration.nix
         ./networking.nix
+        ./users.nix
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -17,13 +18,16 @@
         keyMap = "et";
     };
 
-    users.users.mart = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
-    };
+    environment.systemPackages = with pkgs; [ 
+        tmux 
+        curl 
+        wget 
+        git 
+        vim 
+    ];
 
-    environment.systemPackages = with pkgs; [ vim tmux ];
     virtualisation.docker.enable = true;
     services.openssh.enable = true;
+
     system.stateVersion = "24.05";
 }

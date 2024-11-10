@@ -11,8 +11,8 @@
     programs.home-manager.enable = true;
 
     home = {
-        username = "mart";
-        homeDirectory = "/home/mart";
+        username = "kubujuss";
+        homeDirectory = "/home/kubujuss";
         packages = with pkgs; [
             neofetch
             gnumake
@@ -20,8 +20,6 @@
             nodejs
             rustc
             cargo
-            curl
-            btop
             gcc
         ];
 

@@ -18,7 +18,7 @@
         };
 
         homeConfigurations  = {
-            mart = home-manager.lib.homeManagerConfiguration {
+            kubujuss = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${system};
                 modules = [ ./home/home.nix ];
             };
