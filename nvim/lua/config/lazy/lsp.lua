@@ -19,10 +19,10 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "ts_ls",
-                "lua_ls",
-                "pyright",
                 "rust_analyzer",
+                "pyright",
+                "lua_ls",
+                "ts_ls",
             },
             handlers = {
                 function(server)
