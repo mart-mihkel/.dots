@@ -1,35 +1,27 @@
 {
-    "layer": "top",
-    "position": "top",
+    "layer": "overlay",
+    "position": "bottom",
     "start_hidden": true,
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
+    "exclusive": false,
     "modules-center": [
+        "hyprland/workspaces",
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "battery",
         "clock"
     ],
-    "modules-right": [
-        "bluetooth",
-        "network",
-        "pulseaudio",
-        "battery"
-    ],
-    "hyprland/workspaces": {
-        "move-to-monitor": true
-    },
     "bluetooth": {
         "format": "",
         "format-connected": "",
         "format-connected-battery": "",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\taddress\t\t\tbattery\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%"
     },
     "network": {
         "format-wifi": "{icon}",
-        "format-ethernet": " ",
-        "tooltip-format": "{ifname}:\t{ipaddr}/{cidr}\ngw:\t{gwaddr}/{cidr}",
-        "tooltip-format-wifi": "{essid} {signalStrength}%\n\n{ifname}:\t{ipaddr}/{cidr}\ngway:\t{gwaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}",
         "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
     },
     "pulseaudio": {
@@ -37,9 +29,7 @@
         "format-muted": " ",
         "format-bluetooth": "󰂰",
         "format-bluetooth-muted": "󰂲",
-        "format-source": "",
-        "format-source-muted": " ",
-        "tooltip-format": "{desc} {volume}% {format_source} ",
+        "tooltip-format": "{desc} {volume}%",
         "format-icons": {
             "default": [" ", " ", " "]
         }
@@ -51,8 +41,8 @@
         },
         "format": "{icon}",
         "format-charging": "{icon}󱐋",
-        "tooltip-format": "{time} {capacity}%",
-        "tooltip-format-charging": "{time} {capacity}%",
+        "tooltip-format": "{capacity}%",
+        "tooltip-format-charging": "{capacity}%",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     "clock": {

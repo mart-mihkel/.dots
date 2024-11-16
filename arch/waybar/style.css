@@ -11,11 +11,16 @@
 }
 
 window > box {
-    border-bottom: 1px solid #000000;
+    margin-bottom: 4px;
+}
+
+.modules-center {
+    border: 1px solid #000000;
     background: #f8f8f8;
 }
 
 tooltip {
+    border: 1px solid #000000;
     background: #f8f8f8;
 }
 
@@ -24,7 +29,7 @@ tooltip label {
 }
 
 #workspaces button {
-    padding: 0.25rem;
+    padding: 0.5rem;
 }
 
 #clock:hover,
@@ -42,7 +47,7 @@ tooltip label {
 #network,
 #bluetooth,
 #pulseaudio {
-    padding: 0 1rem;
+    padding: 0.5rem;
 }
 
 @keyframes blink {
