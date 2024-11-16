@@ -14,19 +14,19 @@ GITMAIL="mart.mihkel.aun@gmail.com"
 PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode grub"
 PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh networkmanager intel-undervolt auto-cpufreq wol"
 PKGS_EXTRA="neofetch ripgrep python cmake make nvm gcc r docker docker-compose docker-buildx containerd unzip zip cloudflared"
-PKGS_WAYLAND="hyprland hypridle hyprlock hyprpaper greetd waybar wofi dunst polkit-kde-agent alacritty grim slurp wofi-emoji xdg-desktop-portal-hyprland xwaylandvideobridge"
+PKGS_WAYLAND="hyprland hypridle hyprpaper waybar wofi dunst alacritty grim slurp wofi-emoji greetd wl-clipboard"
 PKGS_HARDWARE="pamixer pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite gammastep brightnessctl"
 PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd firefox slack-desktop qdigidoc4 discord"
 
 if ! id -u aur > /dev/null 2>&1; then
-    echo -e "\n${BOLDGREEN}[aur user setup]${ENDCOLOR}\n"
+    echo -e "${BOLDGREEN}[aur user]${ENDCOLOR}"
 
     useradd -m aur
     echo "aur   ALL = (root) NOPASSWD: /usr/bin/makepkg, /usr/bin/pacman" > /etc/sudoers.d/aur
 fi
 
 if ! command -v yay &> /dev/null; then
-    echo -e "\n${BOLDGREEN}[aur helper setup]${ENDCOLOR}\n"
+    echo -e "${BOLDGREEN}[aur helper]${ENDCOLOR}"
 
     pacman -S --needed --noconfirm base-devel git
     (cd /tmp && git clone https://aur.archlinux.org/yay-bin.git)
@@ -34,27 +34,33 @@ if ! command -v yay &> /dev/null; then
     rm -rf /tmp/yay-bin
 fi
 
-echo -e "\n${BOLDGREEN}[install]${ENDCOLOR}\n"
+echo -e "${BOLDGREEN}[packages]${ENDCOLOR}"
 
 su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP"
 
-groupadd docker
-groupadd network
+echo -e "${BOLDGREEN}[groups]${ENDCOLOR}"
+
+groupadd -f docker
+groupadd -f network
 
 usermod -a -G wheel "$USER"
 usermod -a -G docker "$USER"
 usermod -a -G network "$USER"
 
+echo -e "${BOLDGREEN}[services]${ENDCOLOR}"
+
 systemctl enable pcscd.service
 systemctl enable docker.service
-systemctl enable greetd.service
 systemctl enable NetworkManager
+
+echo -e "${BOLDGREEN}[configs]${ENDCOLOR}"
 
 git config --global user.name "$GITNAME"
 git config --global user.email "$GITMAIL"
 git config --global core.editor vim
 
 ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
+
 su "$USER" -c "
     ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'
     ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'

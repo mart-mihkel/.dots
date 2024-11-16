@@ -17,6 +17,7 @@ alias grep="grep --color"
 alias wol-muumimaja="wol --port=9 9c:6b:00:13:ee:b0"
 alias bluetooth-headset="bluetoothctl connect 14:3F:A6:DA:AA:00"
 
+alias startx-kde="startx /usr/bin/startplasma-x11"
+
 alias pyenv-common="source ~/.venvs/common/bin/activate"
 alias jupyter-common="(source ~/.venvs/common/bin/activate && jupyter-notebook)"
-alias jupyter-common-remote="ssh -N -f -L 8888:localhost:8888 mart@muumimaja.kleinesonne.ee"

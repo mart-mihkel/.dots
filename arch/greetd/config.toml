@@ -2,5 +2,9 @@
 vt = 1
 
 [default_session]
-command = "Hyprland"
+command = "bash"
+user = "mart"
+
+[initial_session]
+command = "hyprland"
 user = "mart"
