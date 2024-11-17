@@ -6,8 +6,9 @@ if [[ -r /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
 fi
 
-if [[ -z "$TMUX" ]]; then
-    tmux attach || tmux
+SESSION="$HOSTNAME"
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t $SESSION || tmux new-session -s $SESSION
 fi
 
 alias vim="nvim"

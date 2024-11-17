@@ -62,12 +62,12 @@ git config --global core.editor vim
 ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
 
 su "$USER" -c "
-    ln -sf '$DOTS/tmux/.tmux.conf' '$HOME/.tmux.conf'
     ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'
     ln -sf '$DOTS/alacritty' '$CONF'
     ln -sf '$DOTS/waybar' '$CONF'
     ln -sf '$DOTS/dunst' '$CONF'
     ln -sf '$DOTS/nvim' '$CONF'
+    ln -sf '$DOTS/tmux' '$CONF'
     ln -sf '$DOTS/wofi' '$CONF'
     ln -sf '$DOTS/hypr' '$CONF'
 "
