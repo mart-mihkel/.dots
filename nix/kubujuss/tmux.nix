@@ -1,14 +1,11 @@
 {
     programs.tmux = {
         enable = true;
+        mouse = true;
+        baseIndex = 1;
+        keyMode = "vi";
         extraConfig = ''
-            VISUAL=nvim
-            EDITOR=nvim
-
-            setw -g mouse on
-
-            set -g mode-keys vi
-            set -g status-keys vi
+            set -g status-left-length 32
 
             set -g status-bg "#181818"
             set -g status-fg "#f8f8f8"

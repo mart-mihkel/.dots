@@ -20,7 +20,7 @@
         homeConfigurations  = {
             kubujuss = home-manager.lib.homeManagerConfiguration {
                 pkgs = nixpkgs.legacyPackages.${system};
-                modules = [ ./home/home.nix ];
+                modules = [ ./kubujuss/home.nix ];
             };
         };
     };

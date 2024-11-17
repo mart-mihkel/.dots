@@ -2,7 +2,7 @@
 
 {
     imports = [
-        (import ./nvim.nix { pkgs = pkgs; })
+        (import ./nvim.nix { inherit pkgs; })
         ./bash.nix
         ./tmux.nix
         ./git.nix

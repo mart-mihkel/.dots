@@ -10,8 +10,9 @@
         initExtra = ''
             PS1="\[\033[01;34m\]\W\[\033[00m\]\$ "
 
-            if [[ -z "$TMUX" ]]; then
-                tmux attach || tmux
+            SESSION="$HOSTNAME"
+            if [[ -z $TMUX ]]; then
+                tmux attach-session -t $SESSION || tmux new-session -s $SESSION
             fi
         '';
     };
