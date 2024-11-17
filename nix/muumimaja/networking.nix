@@ -1,16 +1,16 @@
 {
-    networking = {
-        hostName = "muumimaja";
+  networking = {
+    hostName = "muumimaja";
 
-        networkmanager.enable = false;
+    networkmanager.enable = false;
 
-	firewall.allowedTCPPorts = [ 22 ];
-  	firewall.allowedUDPPorts = [ 9 ];
+    firewall.allowedTCPPorts = [ 22 ];
+    firewall.allowedUDPPorts = [ 9 ];
 
-        interfaces.enp9s0.wakeOnLan.enable = true;
+    interfaces.enp9s0.wakeOnLan.enable = true;
 
-        hosts = {
-            "192.168.10.3" = [ "dell" ];
-        };
+    hosts = {
+      "192.168.10.3" = [ "dell" ];
     };
+  };
 }

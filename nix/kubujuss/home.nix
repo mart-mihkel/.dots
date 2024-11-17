@@ -1,28 +1,28 @@
 { pkgs, ... }:
 
 {
-    imports = [
-        (import ./nvim.nix { inherit pkgs; })
-        ./bash.nix
-        ./tmux.nix
-        ./git.nix
+  imports = [
+    (import ./nvim.nix { inherit pkgs; })
+    ./bash.nix
+    ./tmux.nix
+    ./git.nix
+  ];
+
+  programs.home-manager.enable = true;
+
+  home = {
+    username = "kubujuss";
+    homeDirectory = "/home/kubujuss";
+    packages = with pkgs; [
+      neofetch
+      gnumake
+      ripgrep
+      nodejs
+      rustc
+      cargo
+      gcc
     ];
 
-    programs.home-manager.enable = true;
-
-    home = {
-        username = "kubujuss";
-        homeDirectory = "/home/kubujuss";
-        packages = with pkgs; [
-            neofetch
-            gnumake
-            ripgrep
-            nodejs
-            rustc
-            cargo
-            gcc
-        ];
-
-        stateVersion = "24.05";
-    };
+    stateVersion = "24.05";
+  };
 }

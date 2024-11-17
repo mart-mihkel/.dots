@@ -1,6 +1,6 @@
 {
-    users.users.kubujuss = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" "docker" ];
-    };
+  users.users.kubujuss = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "docker" ];
+  };
 }

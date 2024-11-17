@@ -1,21 +1,21 @@
 { pkgs }:
 
 {
-    programs.neovim = {
-        enable = true;
-        vimAlias = true;
-        extraPackages = with pkgs; [
-            typescript-language-server
-            lua-language-server
-            rust-analyzer
-            pyright
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    extraPackages = with pkgs; [
+      typescript-language-server
+      lua-language-server
+      rust-analyzer
+      pyright
 
-            prettierd
-            stylua
-        ];
-    };
+      prettierd
+      stylua
+    ];
+  };
 
-    home.file = {
-        ".config/nvim".source = ../../arch/nvim;
-    };
+  home.file = {
+    ".config/nvim".source = ../../arch/nvim;
+  };
 }
