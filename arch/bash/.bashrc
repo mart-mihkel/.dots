@@ -22,3 +22,7 @@ alias startx-kde="startx /usr/bin/startplasma-x11"
 
 alias pyenv-common="source ~/.venvs/common/bin/activate"
 alias jupyter-common="(source ~/.venvs/common/bin/activate && jupyter-notebook)"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
