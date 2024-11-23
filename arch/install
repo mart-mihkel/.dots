@@ -11,12 +11,12 @@ DOTS="$HOME/.dots/arch"
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
 
-PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode grub"
+PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode"
 PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh networkmanager intel-undervolt auto-cpufreq wol"
-PKGS_EXTRA="neofetch ripgrep python cmake make nvm gcc r docker docker-compose docker-buildx containerd unzip zip cloudflared"
-PKGS_WAYLAND="hyprland hypridle hyprpaper waybar wofi dunst alacritty grim slurp wofi-emoji greetd wl-clipboard"
-PKGS_HARDWARE="pamixer pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite gammastep brightnessctl"
-PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-ubuntu-mono-nerd firefox slack-desktop qdigidoc4 discord"
+PKGS_EXTRA="neofetch ripgrep pyenv cmake make nvm gcc docker docker-compose docker-buildx containerd unzip zip cloudflared"
+PKGS_I3="i3 xorg-server xorg-xinit xorg-xset picom greetd"
+PKGS_HARDWARE="pamixer pulseaudio pulseaudio-alsa pulseaudio-bluetooth bluez bluez-utils ccid pcsclite gammastep brightnessctl"
+PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-jetbrains-mono-nerd firefox qdigidoc4"
 
 if ! id -u aur > /dev/null 2>&1; then
     echo -e "${BOLDGREEN}[aur user]${ENDCOLOR}"
@@ -29,14 +29,18 @@ if ! command -v yay &> /dev/null; then
     echo -e "${BOLDGREEN}[aur helper]${ENDCOLOR}"
 
     pacman -S --needed --noconfirm base-devel git
-    (cd /tmp && git clone https://aur.archlinux.org/yay-bin.git)
-    su aur -c "(cd /tmp/yay-bin && makepkg -si)"
-    rm -rf /tmp/yay-bin
+    su aur -c "
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay-bin
+        cd /tmp/yay-bin
+        makepkg -si --needed --noconfirm
+        cd /tmp
+        rm -rf /tmp/yay-bin
+    "
 fi
 
 echo -e "${BOLDGREEN}[packages]${ENDCOLOR}"
 
-su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_WAYLAND $PKGS_HARDWARE $PKGS_DESKTOP"
+su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_I3 $PKGS_HARDWARE $PKGS_DESKTOP"
 
 echo -e "${BOLDGREEN}[groups]${ENDCOLOR}"
 
@@ -52,6 +56,7 @@ echo -e "${BOLDGREEN}[services]${ENDCOLOR}"
 systemctl enable pcscd.service
 systemctl enable docker.service
 systemctl enable NetworkManager
+systemctl enable bluetooth.service
 
 echo -e "${BOLDGREEN}[configs]${ENDCOLOR}"
 
@@ -62,12 +67,14 @@ git config --global core.editor vim
 ln -sf "$DOTS/greetd/config.toml" /etc/greetd/config.toml
 
 su "$USER" -c "
+    ln -sf '$DOTS/xorg/.xinitrc' '$HOME/.xinitrc'
     ln -sf '$DOTS/bash/.bashrc' '$HOME/.bashrc'
     ln -sf '$DOTS/alacritty' '$CONF'
-    ln -sf '$DOTS/waybar' '$CONF'
-    ln -sf '$DOTS/dunst' '$CONF'
+    ln -sf '$DOTS/i3blocks' '$CONF'
+    ln -sf '$DOTS/picom' '$CONF'
+    ln -sf '$DOTS/rofi' '$CONF'
     ln -sf '$DOTS/nvim' '$CONF'
     ln -sf '$DOTS/tmux' '$CONF'
-    ln -sf '$DOTS/wofi' '$CONF'
-    ln -sf '$DOTS/hypr' '$CONF'
+    ln -sf '$DOTS/i3' '$CONF'
 "
+

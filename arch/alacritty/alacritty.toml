@@ -2,8 +2,8 @@
 decorations = "None"
 
 [font]
-normal = { family = "UbuntuMono Nerd Font", style = "Regular" }
-size = 14
+normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
+size = 6
 
 [colors]
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }

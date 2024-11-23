@@ -6,5 +6,5 @@ command = "bash"
 user = "mart"
 
 [initial_session]
-command = "hyprland"
+command = "startx"
 user = "mart"
