@@ -5,8 +5,8 @@ ENDCOLOR="\e[0m"
 
 USER="mart"
 HOME="/home/$USER"
+DOTS="$HOME/.dots"
 CONF="$HOME/.config"
-DOTS="$HOME/.dots/arch"
 
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
