@@ -1,7 +1,0 @@
-# vim: ft=cfg
-
-width=256
-height=512
-prompt=
-no_actions=true
-hide_search=true
