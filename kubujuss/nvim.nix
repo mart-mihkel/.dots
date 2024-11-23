@@ -16,6 +16,6 @@
   };
 
   home.file = {
-    ".config/nvim".source = ../../arch/nvim;
+    ".config/nvim".source = ../nvim;
   };
 }

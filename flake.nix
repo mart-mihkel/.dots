@@ -11,9 +11,9 @@
   in
   {
     nixosConfigurations = {
-      muumimaja = nixpkgs.lib.nixosSystem {
+      kartuliuss = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [ ./muumimaja/configuration.nix ];
+        modules = [ ./kartuliuss/configuration.nix ];
       };
     };
 

@@ -2,7 +2,6 @@
 
 {
   imports = [
-    (import ./gpu.nix { inherit pkgs; })
     ./hardware-configuration.nix
     ./networking.nix
     ./users.nix

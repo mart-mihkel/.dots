@@ -1,6 +1,6 @@
 {
   networking = {
-    hostName = "muumimaja";
+    hostName = "kartuliuss";
 
     networkmanager.enable = false;
 
