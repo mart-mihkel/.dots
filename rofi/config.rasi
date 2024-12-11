@@ -1,0 +1,50 @@
+configuration {
+  font: "JetbrainsMono Nerd Font 10";
+  terminal: "alacritty";  
+
+  timeout {
+    action: "kb-cancel";
+    delay:  0;
+  }
+
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+}
+
+* {
+  background-color: none;
+  background: none;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+}
+
+window {
+  height: 100%;
+  width: 12em;
+
+  location: west;
+  anchor: west;
+
+  border: 0 1px 0 0;
+}
+
+inputbar {
+  children: [entry];
+}
+
+listview {
+  scrollbar: false;
+}
+
+element alternate normal {
+  background-color: none;
+}
+
+element selected normal {
+  background-color: #6b6b6b;
+}
