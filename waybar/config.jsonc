@@ -1,0 +1,61 @@
+{
+    "layer": "overlay",
+    "position": "bottom",
+    "start_hidden": true,
+    "exclusive": false,
+    "modules-center": [
+        "hyprland/workspaces",
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "battery",
+        "clock"
+    ],
+    "bluetooth": {
+        "format": "",
+        "format-connected": "",
+        "format-connected-battery": "",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%"
+    },
+    "network": {
+        "format-wifi": "{icon}",
+        "tooltip-format-wifi": "{essid}",
+        "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "]
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": " ",
+        "format-bluetooth": "󰂰",
+        "format-bluetooth-muted": "󰂲",
+        "tooltip-format": "{desc} {volume}%",
+        "format-icons": {
+            "default": [" ", " ", " "]
+        }
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "{icon}󱐋",
+        "tooltip-format": "{capacity}%",
+        "tooltip-format-charging": "{capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{calendar}",
+        "calendar": {
+            "format": {
+                "today": "<span color='#c55555'>{}</span>"
+            }
+        },
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    }
+}

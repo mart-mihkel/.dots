@@ -1,0 +1,26 @@
+* {
+    font-family: "UbuntuMono Nerd Font";
+    font-size: 16px;
+    font-weight: normal;
+
+    background: none;
+    background-color: none;
+
+    border: none;
+    border-radius: 0;
+
+    outline: none;
+}
+
+#scroll {
+    border: 1px solid #000000;
+    background-color: #f8f8f8;
+}
+
+#text:selected {
+    color: #000000;
+}
+
+#entry:selected {
+    background: #d8d8d8;
+}
