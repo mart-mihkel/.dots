@@ -4,6 +4,7 @@ return {
         notify_on_error = false,
         formatters_by_ft = {
             lua = { "stylua" },
+            nix = { "nixpkgs_fmt" },
             javascript = { "prettierd" },
             typescript = { "prettierd" },
             ["_"] = { "trim_whitespace" },

@@ -5,27 +5,29 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-    in {
-      nixosConfigurations = {
-        jaam = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./nix/jaam ];
-        };
-
-        uss = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./nix/uss ];
-        };
+  outputs = { nixpkgs, home-manager, ... }: {
+    nixosConfigurations = {
+      jaam = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./nix/jaam ];
       };
 
-      homeConfigurations  = {
-        kubujuss = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [ ./kubujuss ];
-        };
+      uss = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [ ./nix/uss ];
       };
     };
+
+    homeConfigurations = {
+      kubujuss = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [ ./kubujuss ];
+      };
+
+      kubujuss-arm = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."aarch64-linux";
+        modules = [ ./kubujuss ];
+      };
+    };
+  };
 }

@@ -22,6 +22,7 @@
     tmux
     curl
     wget
+    wol
     git
     gcc
     vim

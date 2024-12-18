@@ -1,9 +1,16 @@
 {
   boot = {
-    loader.systemd-boot.enable = true;
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
-    initrd.kernelModules = [ ];
-    kernelModules = [ "kvm-amd" ];
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+
+    initrd = {
+      availableKernelModules = [ "xhci_pci" ];
+      kernelModules = [ ];
+    };
+
+    kernelModules = [ ];
     extraModulePackages = [ ];
   };
 }
