@@ -9,6 +9,6 @@
     keyMap = "et";
 
     packages = with pkgs; [ terminus_font ];
-    font = "ter-u22n";
+    font = "ter-u12n";
   };
 }

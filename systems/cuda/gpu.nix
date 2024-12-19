@@ -1,11 +1,6 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 
 {
-  nixpkgs.config = {
-    cudaSupport = true;
-    allowUnfree = true;
-  };
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {
@@ -22,18 +17,6 @@
       powerManagement.enable = true;
 
       package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
-  };
-
-  environment = {
-    systemPackages = with pkgs.cudaPackages; [
-      cudatoolkit
-      cudnn
-    ];
-
-    variables = {
-      LD_LIBRARY_PATH = "/run/opengl-driver/lib:$LD_LIBRARY_PATH";
-      CUDA_HOME = "/run/opengl-driver";
     };
   };
 }

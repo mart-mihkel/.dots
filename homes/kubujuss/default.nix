@@ -15,8 +15,8 @@
     homeDirectory = "/home/kubujuss";
 
     packages = with pkgs; [
-      neofetch
-      btop
+      neofetch 
+      wol
     ];
 
     stateVersion = "24.05";

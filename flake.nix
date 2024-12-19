@@ -1,32 +1,47 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: {
-    nixosConfigurations = {
-      jaam = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./nix/jaam ];
-      };
+  outputs = { nixpkgs, home-manager, ... }: let
+    x86 = "x86_64-linux";
+    arm = "aarch64-linux";
 
-      uss = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [ ./nix/uss ];
+    homes = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users = {
+        kubujuss = import ./homes/kubujuss;
+        seire = import ./homes/seire;
       };
     };
+  in {
+    nixosConfigurations = {
+      jaam = nixpkgs.lib.nixosSystem {
+        system = "${x86}";
+        modules = [
+          ./systems/jaam.nix
 
-    homeConfigurations = {
-      kubujuss = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [ ./kubujuss ];
+          home-manager.nixosModules.home-manager { 
+            home-manager = homes;
+          }
+        ];
       };
 
-      kubujuss-arm = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-linux";
-        modules = [ ./kubujuss ];
+      alajaam = nixpkgs.lib.nixosSystem {
+        system = "${arm}";
+        modules = [
+          ./systems/alajaam.nix 
+
+          home-manager.nixosModules.home-manager { 
+            home-manager = homes;
+          }
+        ];
       };
     };
   };
