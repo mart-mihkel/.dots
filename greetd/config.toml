@@ -6,5 +6,5 @@ command = "bash --norc"
 user = "mart"
 
 [initial_session]
-command = "startx"
+command = "hyprland"
 user = "mart"

@@ -12,23 +12,15 @@ bar {
     status_command i3blocks
 }
 
-set $refresh pkill -SIGRTMIN+1 i3blocks
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle  && $refresh
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%-
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +5%
-
 bindsym $mod+Shift+s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+r exec --no-startup-id rofi -show ssh
+
 bindsym $mod+period exec --no-startup-id rofi -modi emoji -show emoji
 bindsym $mod+r exec --no-startup-id rofi -show drun
-bindsym $mod+space focus mode_toggle
+bindsym $mod+q exec alacritty
+
 bindsym $mod+f fullscreen toggle
 bindsym $mod+v floating toggle
-bindsym $mod+q exec alacritty
 bindsym $mod+n restart
 bindsym $mod+c kill
 bindsym $mod+m exit
@@ -42,6 +34,15 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+set $refresh pkill -SIGRTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle  && $refresh
+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +5%
 
 set $ws1 "1"
 set $ws2 "2"

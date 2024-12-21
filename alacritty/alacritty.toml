@@ -3,7 +3,7 @@ decorations = "None"
 
 [font]
 normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
-size = 6
+size = 11
 
 [colors]
 cursor = { text = "#0d0e0c", cursor = "#c8b6b8" }

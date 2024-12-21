@@ -27,10 +27,11 @@ window {
   height: 20em;
   width: 12em;
 
-  padding: 0;
+  padding: 4;
   margin: 0;
 
-  border: 1px;
+  border: 2;
+  border-radius: 8;
 }
 
 inputbar {
@@ -45,8 +46,11 @@ listview {
   scrollbar: false;
 
   padding: 0;
+  border: 0;
+}
 
-  border: 1 0 0 0;
+element {
+  padding: 2;
 }
 
 element alternate normal {
@@ -55,4 +59,6 @@ element alternate normal {
 
 element selected normal {
   text-color: #ffffff;
+  background-color: #6b6b6b;
+  border-radius: 4;
 }

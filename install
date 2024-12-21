@@ -7,6 +7,8 @@ USER="mart"
 HOME="/home/$USER"
 CONF="$HOME/.config"
 DOTS="$HOME/git/dotfiles"
+XORG="$DOTS/xorg"
+WAYLAND="$DOTS/wayland"
 
 GITNAME="mart-mihkel"
 GITMAIL="mart.mihkel.aun@gmail.com"
@@ -15,7 +17,8 @@ PKGS_CORE="base base-devel linux-lts linux-firmware intel-ucode"
 PKGS_COMMON="sudo man-db bash-completion git curl wget neovim vim tmux openssl openssh networkmanager intel-undervolt auto-cpufreq wol"
 PKGS_EXTRA="neofetch ripgrep cargo cmake make nodejs gcc uv docker docker-compose docker-buildx containerd unzip zip cloudflared"
 PKGS_I3="i3 xorg-server xorg-xinit xorg-xset xorg-xrandr xclip autotiling gammastep greetd maim rofi rofi-emoji"
-PKGS_HARDWARE="pamixer pulseaudio pulseaudio-alsa pulseaudio-bluetooth bluez bluez-utils ccid pcsclite brightnessctl"
+PKGS_HYPRLAND="hyprland hypridle hyprpaper wl-clipboard gammastep greetd grim slurp rofi rofi-emoji"
+PKGS_HARDWARE="pipewire pipewire-alsa pipewire-pulse wireplumber bluez bluez-utils ccid pcsclite brightnessctl"
 PKGS_DESKTOP="noto-fonts-emoji noto-fonts-cjk ttf-jetbrains-mono-nerd firefox qdigidoc4"
 
 if ! id -u aur > /dev/null 2>&1; then
@@ -42,7 +45,7 @@ fi
 
 echo -e "[${BOLDGREEN}packages${ENDCOLOR}]"
 
-su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_I3 $PKGS_HARDWARE $PKGS_DESKTOP"
+su aur -c "yay -S --needed --noconfirm $PKGS_CORE $PKGS_COMMON $PKGS_EXTRA $PKGS_I3 $PKGS_HYPRLAND $PKGS_HARDWARE $PKGS_DESKTOP"
 
 echo -e "[${BOLDGREEN}groups${ENDCOLOR}]"
 
@@ -72,13 +75,16 @@ git config --global core.editor nvim
 ln -sf $DOTS/greetd/config.toml /etc/greetd/config.toml
 
 su "$USER" -c "
-    ln -sf $DOTS/xorg/.xinitrc $HOME/.xinitrc
+    ln -sf $XORG/.xinitrc $HOME/.xinitrc
+    ln -sf $XORG/i3blocks $CONF
+    ln -sf $XORG/i3 $CONF
+
+    ln -sf $WAYLAND/hypr $CONF
+
     ln -sf $DOTS/bash/.bashrc $HOME/.bashrc
     ln -sf $DOTS/alacritty $CONF
-    ln -sf $DOTS/i3blocks $CONF
     ln -sf $DOTS/rofi $CONF
     ln -sf $DOTS/nvim $CONF
     ln -sf $DOTS/tmux $CONF
-    ln -sf $DOTS/i3 $CONF
 "
 
